@@ -15,9 +15,13 @@
 
   <div class="grid gap-2">
     <div>Public</div>
-    <div
+    <!-- <div
       [style.border-bottom]="'1px solid '"
       [style.color]="playlist.public ? 'red' : 'green'"
+    > -->
+    <div
+      [class.isPublic]=" playlist.public "
+      [class.isPrivate]=" !playlist.public  "
     >
       {{ playlist.public ? "Yes" : "No" }}
     </div>

@@ -1,0 +1,19 @@
+.isPublic,
+.isPrivte {
+  border-bottom: 1px solid;
+}
+
+// Interface
+:host(.isSelected){
+
+  // Implementation
+  background-color: azure;
+}
+
+:host ::ng-deep .isPublic {
+  color: red;
+}
+
+.isPrivte {
+  color: green;
+}
