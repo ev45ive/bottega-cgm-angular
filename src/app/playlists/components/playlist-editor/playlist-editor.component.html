@@ -5,15 +5,14 @@
 <!-- .grid.gap-5>.grid.gap-2*3>label{Name}+input -->
 <div class="grid gap-5">
   <div class="grid gap-2">
-    <label for="">Name</label>
 
-    <input type="text" #inputRef [(ngModel)]="playlist.name" />
-    
-    <!-- 
-      [ngModel]=" myFormatter( playlist.name )"
-      (ngModelChange)="playlist.name = myParser( $event )" -->
-    <!-- (input)="playlist.name = $any($event.target).value" -->
-    <span class="text-right">{{ inputRef.value.length }} / 100</span>
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+
+      <input type="text" #inputRef [(ngModel)]="playlist.name" matInput />
+
+      <mat-hint>{{ inputRef.value.length }} / 100</mat-hint>
+    </mat-form-field>    
   </div>
 
   <div class="grid gap-2">
