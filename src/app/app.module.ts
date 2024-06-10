@@ -4,6 +4,7 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
   imports: [
     BrowserModule,
     // PlaylistsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
   providers: [
     provideClientHydration(),

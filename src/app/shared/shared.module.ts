@@ -10,6 +10,9 @@ import { ClockComponent } from './components/clock/clock.component';
   ],
   imports: [
     CommonModule
+  ],
+  exports:[
+    ClockComponent
   ]
 })
 export class SharedModule { }
