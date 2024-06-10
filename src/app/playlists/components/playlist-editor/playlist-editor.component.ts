@@ -18,7 +18,7 @@ export class PlaylistEditorComponent {
   }
 
   constructor(private cdr: ChangeDetectorRef) {
-    this.cdr.detectChanges();
+    this.cdr.detectChanges(); // Cannot detect in constructor
   }
 
   playlist = {
