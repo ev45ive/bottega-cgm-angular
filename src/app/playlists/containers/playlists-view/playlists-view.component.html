@@ -16,6 +16,7 @@
     <!-- <ng-tempalte ngIf -->
     <!-- <app-playlist-details *ngIf="mode === 'details' then detailsRef else editorRef" /> -->
 
+    
     <ng-container [ngSwitch]="mode">
       <app-playlist-details *ngSwitchDefault />
       <app-playlist-editor *ngSwitchCase="'editor'" />
