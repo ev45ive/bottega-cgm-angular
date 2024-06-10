@@ -79,3 +79,16 @@ UPDATE src/app/app.module.ts (825 bytes)
 UPDATE angular.json (3342 bytes)
 UPDATE src/index.html (623 bytes)
 UPDATE src/styles.scss (182 bytes)
+
+## Playlists 
+ng g --help
+ng g m --help
+
+ng g m playlists -m app --route playlists  --routing 
+
+ng g c playlists/containers/playlists-view
+
+ng g c playlists/components/playlist-list
+ng g c playlists/components/playlist-details
+ng g c playlists/components/playlist-editor
+
