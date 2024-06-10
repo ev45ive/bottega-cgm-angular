@@ -15,13 +15,20 @@
 
   <div class="grid gap-2">
     <div>Public</div>
+    <!-- <div [ngClass]="calculatedStyles"></div>
+    <div [ngClass]="getMyCalculatedStyles()"></div> -->
+    
     <!-- <div
       [style.border-bottom]="'1px solid '"
       [style.color]="playlist.public ? 'red' : 'green'"
     > -->
+
+    <div [ngStyle]="{ color: playlist.public ? 'red' : 'green' }"></div>
+    <div [ngClass]="{ isPublic: playlist.public,  isPrivate: !playlist.public }"></div>
+
     <div
-      [class.isPublic]=" playlist.public "
-      [class.isPrivate]=" !playlist.public  "
+      [class.isPublic]="playlist.public"
+      [class.isPrivate]="!playlist.public"
     >
       {{ playlist.public ? "Yes" : "No" }}
     </div>
