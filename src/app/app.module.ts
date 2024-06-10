@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ApplicationRef, DoBootstrap, NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +15,12 @@ import { AppComponent } from './app.component';
   providers: [
     provideClientHydration()
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent /* HeaderComponent, SidebarComponent */]
 })
 export class AppModule { }
+
+// export class AppModule implements DoBootstrap{
+//   ngDoBootstrap(appRef: ApplicationRef): void {
+//     appRef.bootstrap(AppComponent,'app-root')
+//   }
+// }
