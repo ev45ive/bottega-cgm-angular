@@ -21,10 +21,20 @@
     <!-- <div
       [style.border-bottom]="'1px solid '"
       [style.color]="playlist.public ? 'red' : 'green'"
-    > -->
+    ></div> -->
 
     <div [ngStyle]="{ color: playlist.public ? 'red' : 'green' }"></div>
     <div [ngClass]="{ isPublic: playlist.public,  isPrivate: !playlist.public }"></div>
+
+    <!-- @Directive{ [ngStyle] }   -->
+    dir = new NgStyle(ElementRef, Renderer2)
+    dir.ngStyle = { color: ... }
+    dir.ngDoCheck()
+    
+    <!-- @Directive{ [ngClass] }   -->
+    dir = new NgClass(ElementRef, Renderer2)
+    dir.ngClass = { isPublic: ... }
+    dir.ngDoCheck()
 
     <div
       [class.isPublic]="playlist.public"
