@@ -54,6 +54,10 @@ https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
 Paste JSON as Code - quicktype
 https://marketplace.visualstudio.com/items?itemName=quicktype.quicktype
 
+# Tailwind
+https://tailwindcss.com/
+https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss
+
 
 # UI Toolkits
 https://material.angular.io/guide/schematics
