@@ -11,8 +11,11 @@
     <!-- <app-playlist-details [ngIf]="mode === 'details'" /> -->
     <!-- <app-playlist-editor [hidden]="mode !== 'editor'" /> -->
 
-    <ng-template [ngIf]="mode === 'details'" [ngIfThen]="detailsRef" [ngIfElse]="editorRef">
-    </ng-template>
+    <ng-template [ngIf]="mode === 'details'" [ngIfThen]="detailsRef" [ngIfElse]="editorRef"/>
+
+
+    <!-- <ng-tempalte ngIf -->
+    <app-playlist-details *ngIf="mode === 'details' then detailsRef else editorRef" />
 
     <div class="flex justify-between mt-5">
       <button mat-flat-button color="primary" (click)="showEditor()">
