@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class PlaylistEditorComponent {
 
+  playlist = {
+    id: '123',
+    name: 'Playlist 123',
+    public: true,
+    description: 'Best playlsit',
+  };
 }

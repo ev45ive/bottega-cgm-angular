@@ -27,14 +27,14 @@
     <div [ngClass]="{ isPublic: playlist.public,  isPrivate: !playlist.public }"></div>
 
     <!-- @Directive{ [ngStyle] }   -->
-    dir = new NgStyle(ElementRef, Renderer2)
+    <!-- dir = new NgStyle(ElementRef, Renderer2)
     dir.ngStyle = { color: ... }
-    dir.ngDoCheck()
+    dir.ngDoCheck() -->
     
     <!-- @Directive{ [ngClass] }   -->
-    dir = new NgClass(ElementRef, Renderer2)
+    <!-- dir = new NgClass(ElementRef, Renderer2)
     dir.ngClass = { isPublic: ... }
-    dir.ngDoCheck()
+    dir.ngDoCheck() -->
 
     <div
       [class.isPublic]="playlist.public"
