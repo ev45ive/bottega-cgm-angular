@@ -6,17 +6,19 @@
     
     <div class="grid gap-2">
         <div>Name</div>
-        <div>Playlist</div>
+        <div>{{playlist.name}}</div>
     </div>
     
     <div class="grid gap-2">
         <div>Public</div>
-        <div>Yes</div>
+        <div>{{playlist.public ? 'Yes' : 'No' }}</div>
     </div>
 
     <div class="grid gap-2">
         <div>Description</div>
-        <div>Best Playlist</div>
+        <div>{{playlist.description}}</div>
     </div>
 
 </div>
+
+<!-- {{ if else swich for function { } }} -->
