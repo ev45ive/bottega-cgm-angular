@@ -19,10 +19,10 @@ export class ClockComponent {
   time = ''; //new Date().toLocaleTimeString();
 
   constructor(
-    private app: ApplicationRef,
-    private cdr: ChangeDetectorRef,
-    private zone: NgZone,
-    @Inject(PLATFORM_ID) private pid: object
+      private app: ApplicationRef,
+      private cdr: ChangeDetectorRef,
+      private zone: NgZone,
+      @Inject(PLATFORM_ID) private pid: object
   ) {}
 
   ngOnInit(): void {
