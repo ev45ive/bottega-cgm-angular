@@ -11,8 +11,7 @@
     <!-- <app-playlist-details [ngIf]="mode === 'details'" /> -->
     <!-- <app-playlist-editor [hidden]="mode !== 'editor'" /> -->
 
-    <ng-template [ngIf]="mode === 'details'">
-      <app-playlist-details />
+    <ng-template [ngIf]="mode === 'details'" [ngIfThen]="detailsRef" [ngIfElse]="editorRef">
     </ng-template>
 
     <div class="flex justify-between mt-5">
@@ -25,3 +24,11 @@
     </div>
   </div>
 </div>
+
+<ng-template #detailsRef>
+  <app-playlist-details />
+</ng-template>
+
+<ng-template #editorRef>
+  <app-playlist-editor />
+</ng-template>
