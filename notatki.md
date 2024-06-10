@@ -53,3 +53,29 @@ https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
 
 Paste JSON as Code - quicktype
 https://marketplace.visualstudio.com/items?itemName=quicktype.quicktype
+
+
+# UI Toolkits
+https://material.angular.io/guide/schematics
+https://ng.ant.design/docs/introduce/en
+https://primeng.org/
+https://tailwindcss.com/
+
+ng add @angular/material
+ℹ Using package manager: npm
+✔ Found compatible package version: @angular/material@18.0.2.
+✔ Package information loaded.
+
+The package @angular/material@18.0.2 will be installed and executed.
+Would you like to proceed? Yes
+✔ Packages successfully installed.
+? Choose a prebuilt theme name, or "custom" for a custom theme: Cyan/Orange        
+[Preview: https://material.angular.io?theme=cyan-orange]
+? Set up global Angular Material typography styles? Yes
+? Include the Angular animations module? Include and enable animations
+UPDATE package.json (1321 bytes)
+✔ Packages installed successfully.
+UPDATE src/app/app.module.ts (825 bytes)
+UPDATE angular.json (3342 bytes)
+UPDATE src/index.html (623 bytes)
+UPDATE src/styles.scss (182 bytes)
