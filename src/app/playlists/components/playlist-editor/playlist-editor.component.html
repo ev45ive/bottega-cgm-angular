@@ -9,10 +9,17 @@
     <mat-form-field>
       <mat-label>Name</mat-label>
 
-      <input type="text" #inputRef [(ngModel)]="playlist.name" matInput />
+      <input type="text" #modelRef="ngModel" [(ngModel)]="playlist.name" matInput required minlength="3" />
 
-      <mat-hint>{{ inputRef.value.length }} / 100</mat-hint>
+      <mat-error *ngIf="modelRef.getError('required')">Field required</mat-error>
+      <mat-error *ngIf="modelRef.getError('minlength')">
+        Minumum length {{modelRef.getError('minlength').requiredLength }} 
+      </mat-error>
+
+      <mat-hint>{{ modelRef.value?.length }} / 100</mat-hint>
     </mat-form-field>    
+    
+    <pre>{{modelRef.errors | json }}</pre>
   </div>
 
   <div class="grid gap-2">
