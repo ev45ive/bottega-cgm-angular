@@ -7,8 +7,13 @@
   </div>
 
   <div>
-    <app-playlist-details [hidden]="mode !== 'details'" />
-    <app-playlist-editor [hidden]="mode !== 'editor'" />
+    <!-- Error: NG0201: No provider for _TemplateRef found. Find more at https://angular.dev/errors/NG0201 -->
+    <!-- <app-playlist-details [ngIf]="mode === 'details'" /> -->
+    <!-- <app-playlist-editor [hidden]="mode !== 'editor'" /> -->
+
+    <ng-template [ngIf]="mode === 'details'">
+      <app-playlist-details />
+    </ng-template>
 
     <div class="flex justify-between mt-5">
       <button mat-flat-button color="primary" (click)="showEditor()">
