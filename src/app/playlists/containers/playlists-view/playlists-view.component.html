@@ -8,9 +8,15 @@
 
   <div>
     <app-playlist-details [hidden]="mode !== 'details'" />
-    <app-playlist-editor  [hidden]="mode !== 'editor'"/>
+    <app-playlist-editor [hidden]="mode !== 'editor'" />
 
-    <button (click)="showEditor()">Edit</button>
-    <button (click)="showDetails()">Cancel</button>
+    <div class="flex justify-between mt-5">
+      <button mat-flat-button color="primary" (click)="showEditor()">
+        Edit
+      </button>
+      <button mat-flat-button color="warn" (click)="showDetails()">
+        Cancel
+      </button>
+    </div>
   </div>
 </div>
