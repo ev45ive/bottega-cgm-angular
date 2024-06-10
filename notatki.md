@@ -23,7 +23,18 @@ ng new --help
 
 ng new cgm --directory  "." --standalone false 
 
+# GIT
+git clone https://github.com/ev45ive/bottega-cgm-angular.git
+npm install
+npm start
 
+
+## Semver
+https://semver.org/
+https://semver.npmjs.com/
+
+npm i // package.json + updates
+npm ci // package-lock.json - exact!
 
 
 https://marketplace.visualstudio.com/items?itemName=nrwl.angular-console
