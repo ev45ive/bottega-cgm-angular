@@ -6,10 +6,13 @@ import { Component } from '@angular/core';
   styleUrl: './playlists-view.component.scss',
 })
 export class PlaylistsViewComponent {
-  
   mode: 'details' | 'editor' = 'details';
 
-  showDetails(){}
-  showEditor(){}
+  showDetails() {
+    this.mode = 'details';
+  }
 
+  showEditor() {
+    this.mode = 'editor';
+  }
 }

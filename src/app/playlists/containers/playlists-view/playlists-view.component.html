@@ -7,10 +7,10 @@
   </div>
 
   <div>
-    <app-playlist-details [hidden]="false" />
-    <app-playlist-editor  [hidden]="true"/>
+    <app-playlist-details [hidden]="mode !== 'details'" />
+    <app-playlist-editor  [hidden]="mode !== 'editor'"/>
 
-    <button>Edit</button>
-    <button>Cancel</button>
+    <button (click)="showEditor()">Edit</button>
+    <button (click)="showDetails()">Cancel</button>
   </div>
 </div>
