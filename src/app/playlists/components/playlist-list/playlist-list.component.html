@@ -1,9 +1,10 @@
 <mat-list>
-  <!-- <mat-list-item *ngFor="let playlist = $implicit; of playlists;  index as i"> -->
-  <mat-list-item *ngFor="let playlist of playlists; index as i">
+  <mat-list-item *ngFor="let playlist of playlists; index as i; trackBy byId">
     {{ i + 1 }}. {{ playlist.name }}
   </mat-list-item>
 </mat-list>
+
+<!-- <mat-list-item *ngFor="let playlist = $implicit; of playlists;  index as i"> -->
 
 <!-- <ng-template
     ngFor
@@ -15,6 +16,7 @@
 </ng-template> -->
 
 <!-- [ngFor][ngForOf] -->
+
 <!-- <div ngFor="" ngForOf=""></div> -->
 
 <!-- for let a = implicit

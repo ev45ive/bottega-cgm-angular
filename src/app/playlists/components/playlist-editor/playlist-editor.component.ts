@@ -2,7 +2,12 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ElementRef,
+  Host,
+  Optional,
 } from '@angular/core';
+import { PlaylistsViewComponent } from '../../containers/playlists-view/playlists-view.component';
+import { AppComponent } from '../../../app.component';
 
 @Component({
   selector: 'app-playlist-editor',
@@ -12,7 +17,16 @@ import {
 })
 export class PlaylistEditorComponent {
   
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(
+    // local scope
+    private elem: ElementRef<HTMLDivElement>,
+    
+    // High coupling!
+    @Host() @Optional() private parent: PlaylistsViewComponent,
+    
+    // Singleton
+    private app: AppComponent
+  ) {}
 
   playlist = {
     id: '123',
