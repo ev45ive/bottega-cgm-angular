@@ -6,20 +6,23 @@
 <div class="grid gap-5">
   <div class="grid gap-2">
     <label for="">Name</label>
+
+    <input type="text" #inputRef [(ngModel)]="playlist.name" />
     
-    <input
-      type="text"
-      #inputRef
-      
-      [ngModel]="playlist.name" (ngModelChange)="playlist.name = $event " 
-      />
-      <!-- (input)="playlist.name = $any($event.target).value" -->
+    <!-- 
+      [ngModel]=" myFormatter( playlist.name )"
+      (ngModelChange)="playlist.name = myParser( $event )" -->
+    <!-- (input)="playlist.name = $any($event.target).value" -->
     <span class="text-right">{{ inputRef.value.length }} / 100</span>
   </div>
 
   <div class="grid gap-2">
     <label for="">
-      <input type="checkbox" [ngModel]="playlist.public" (ngModelChange)="(0)" />Public
+      <input
+        type="checkbox"
+        [ngModel]="playlist.public"
+        (ngModelChange)="(0)"
+      />Public
     </label>
   </div>
 
