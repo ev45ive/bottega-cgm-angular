@@ -24,6 +24,9 @@
       <mat-error *ngIf="modelRef.getError('minlength') as error">
         Minumum length {{ error.requiredLength }}
       </mat-error>
+      <mat-error *ngIf="modelRef.getError('censor') as error">
+        Cannot contain {{ error.badword }}
+      </mat-error>
 
       <mat-hint>{{ modelRef.value?.length }} / 100</mat-hint>
     </mat-form-field>
