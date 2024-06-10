@@ -5,21 +5,30 @@
 <!-- .grid.gap-5>.grid.gap-2*3>label{Name}+input -->
 <div class="grid gap-5">
   <div class="grid gap-2">
-
     <mat-form-field>
       <mat-label>Name</mat-label>
 
-      <input type="text" #modelRef="ngModel" [(ngModel)]="playlist.name" matInput required minlength="3" />
+      <input
+        type="text"
+        #modelRef="ngModel"
+        [(ngModel)]="playlist.name"
+        matInput
+        required
+        minlength="3"
+        appCensor
+      />
 
-      <mat-error *ngIf="modelRef.getError('required')">Field required</mat-error>
-      <mat-error *ngIf="modelRef.getError('minlength')  as error">
-        Minumum length {{error.requiredLength }} 
+      <mat-error *ngIf="modelRef.getError('required')"
+        >Field required</mat-error
+      >
+      <mat-error *ngIf="modelRef.getError('minlength') as error">
+        Minumum length {{ error.requiredLength }}
       </mat-error>
 
       <mat-hint>{{ modelRef.value?.length }} / 100</mat-hint>
-    </mat-form-field>    
+    </mat-form-field>
 
-    <pre>{{modelRef.errors | json }}</pre>
+    <pre>{{ modelRef.errors | json }}</pre>
   </div>
 
   <div class="grid gap-2">
