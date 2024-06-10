@@ -11,15 +11,8 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush, // d|-_-|b
 })
 export class PlaylistEditorComponent {
-  // @Input() playlist: Class;
-
-  ngDoCheck(): void { // parent is being checked
-    this.cdr.markForCheck() // detect once with parent
-  }
-
-  constructor(private cdr: ChangeDetectorRef) {
-    this.cdr.detectChanges(); // Cannot detect in constructor
-  }
+  
+  constructor(private cdr: ChangeDetectorRef) {}
 
   playlist = {
     id: '123',
