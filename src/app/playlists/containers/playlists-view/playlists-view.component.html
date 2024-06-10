@@ -15,8 +15,14 @@
 
 
     <!-- <ng-tempalte ngIf -->
-    <app-playlist-details *ngIf="mode === 'details' then detailsRef else editorRef" />
+    <!-- <app-playlist-details *ngIf="mode === 'details' then detailsRef else editorRef" /> -->
 
+    <ng-container ngSwitch="mode">
+      <app-playlist-details ngSwitchCase="details" />
+      <app-playlist-editor ngSwitchCase="editor" />
+    </ng-container>
+    
+    
     <div class="flex justify-between mt-5">
       <button mat-flat-button color="primary" (click)="showEditor()">
         Edit
