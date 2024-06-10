@@ -29,6 +29,7 @@ npm install
 npm start
 
 
+
 ## Semver
 https://semver.org/
 https://semver.npmjs.com/
@@ -36,5 +37,19 @@ https://semver.npmjs.com/
 npm i // package.json + updates
 npm ci // package-lock.json - exact!
 
+# Extensions
+https://angular.dev/tools/devtools
 
 https://marketplace.visualstudio.com/items?itemName=nrwl.angular-console
+
+Angular Language Service
+https://marketplace.visualstudio.com/items?itemName=Angular.ng-template
+
+Angular 10 Snippets - Mikael Morlund
+https://marketplace.visualstudio.com/items?itemName=Mikael.Angular-BeastCode
+
+Prettier
+https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
+
+Paste JSON as Code - quicktype
+https://marketplace.visualstudio.com/items?itemName=quicktype.quicktype
