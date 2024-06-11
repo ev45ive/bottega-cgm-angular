@@ -13,13 +13,15 @@ import { Album } from '../../../core/services/model/album';
     imports: [SearchFormComponent, ResultsGridComponent]
 })
 export class AlbumSearchViewComponent {
-
-    constructor(private api:MusicApiService){}
-
     results:Album[] = []
 
+    constructor(private api: MusicApiService){}
+    
     searchAlbums(query: string) {
-        this.results= this.api.fetchAlbum(query)    
+        this.results = this.api.fetchAlbum(query)    
     }
-
+    
+    // ngOnInit(): void {
+    //     this.searchAlbums('batman')
+    // }
 }

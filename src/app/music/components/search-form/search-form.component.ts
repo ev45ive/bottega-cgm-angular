@@ -9,7 +9,7 @@ import { MaterialImports, SharedModule } from '../../../shared/shared.module';
   styleUrl: './search-form.component.scss'
 })
 export class SearchFormComponent {
-
+  
   query = ''
 
   @Output() search = new EventEmitter<string>();
