@@ -8,6 +8,7 @@ import {
   Input,
   Optional,
   Output,
+  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { PlaylistsViewComponent } from '../../containers/playlists-view/playlists-view.component';
@@ -44,9 +45,32 @@ const EMPTY_PLAYLIST = {
 })
 export class PlaylistEditorComponent {
   @Input() playlist?: Playlist = EMPTY_PLAYLIST;
+  draft?: Playlist;
 
   @Output() cancel = new EventEmitter<void>();
   @Output() save = new EventEmitter<Playlist>();
+
+  constructor() {
+    console.log('constructor');
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('ngOnChanges', changes);
+  }
+  ngOnInit(): void {
+    console.log('ngOnInit');
+  }
+  ngDoCheck(): void {
+    console.log('ngDoCheck');
+  }
+  ngAfterViewInit(): void {
+    console.log('ngAfterViewInit');
+  }
+  ngAfterViewChecked(): void {
+    console.log('ngAfterViewChecked');
+  }
+  ngOnDestroy(): void {
+    console.log('ngOnDestroy');
+  }
 
   close() {
     this.cancel.emit();
