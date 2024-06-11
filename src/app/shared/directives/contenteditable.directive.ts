@@ -1,25 +1,37 @@
-import { Directive } from '@angular/core';
+import { Directive, ElementRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Directive({
   selector: '[contenteditable][ngModel]',
   providers: [
-    { provide: NG_VALUE_ACCESSOR, useExisting: ContenteditableDirective, multi:true },
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: ContenteditableDirective,
+      multi: true,
+    },
   ],
 })
 export class ContenteditableDirective implements ControlValueAccessor {
-  constructor() {}
+
+  // Bridge Pattern - Extend Abstract NgModel with Concrete Control implementation
+
+  isDisabled = false;
+  constructor(private elem: ElementRef<HTMLElement>) {}
 
   writeValue(obj: any): void {
-    throw new Error('Method not implemented.');
+    this.elem.nativeElement.innerHTML = obj;
   }
+
   registerOnChange(fn: any): void {
-    throw new Error('Method not implemented.');
+    this.elem.nativeElement.oninput = () => fn(this.elem.nativeElement.innerHTML);
   }
+
   registerOnTouched(fn: any): void {
-    throw new Error('Method not implemented.');
+    this.elem.nativeElement.onblur = fn
   }
+
   setDisabledState?(isDisabled: boolean): void {
-    throw new Error('Method not implemented.');
+    this.isDisabled = isDisabled;
+    // this.elem.nativeElement.classList.toggle('bg-gray-200')
   }
 }
