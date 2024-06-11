@@ -16,11 +16,6 @@ import {
 export class CensorDirective implements Validator {
   badword = 'batman';
 
-  // Error: NG0200: Circular dependency in DI detected for _NgModel. Find more at https://angular.dev/errors/NG0200
-  // constructor(private elem: ElementRef, private model: NgModel) {
-  //   console.log('appCensor', elem, model);
-  // }
-
   validate(control: AbstractControl<any, any>): ValidationErrors | null {
     return String(control.value).includes(this.badword)
       ? { censor: { badword: this.badword } }
