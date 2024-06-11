@@ -8,20 +8,20 @@
   </div>
 
   <div>
-    <ng-container [ngSwitch]="mode">
+    <ng-container [ngSwitch]="mode" >
       
       <app-playlist-details
         *ngSwitchDefault
         [playlist]="selected"
         (edit)="showEditor()"
       />
-
+<!-- 
       <app-playlist-editor
         *ngSwitchCase="'editor'"
         [playlist]="selected"
         (cancel)="showDetails()"
         (save)="savePlaylist($event)"
-      />
+      /> -->
 
     </ng-container>
   </div>

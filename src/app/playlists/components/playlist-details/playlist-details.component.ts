@@ -8,8 +8,7 @@ import { Playlist } from '../playlist-list/Playlist';
   // encapsulation: ViewEncapsulation.None
 })
 export class PlaylistDetailsComponent {
-  @Input({ required: true }) playlist!: Playlist;
-
+  @Input() playlist?: Playlist;
   @Output() edit = new EventEmitter();
 
   clickEdit(){

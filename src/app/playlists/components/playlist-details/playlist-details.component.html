@@ -1,4 +1,5 @@
 <div
+  *ngIf="playlist; else noPlaylist"
   class="grid gap-5"
   [title]="playlist.name"
   id="playlist_{{ playlist.id }}"
@@ -31,5 +32,9 @@
       (click)="edit.emit()">Edit</button> -->
   </div>
 </div>
+
+<ng-template #noPlaylist>
+  <p>No playlist selected</p>
+</ng-template>
 
 <!-- {{ if else swich for function { } }} -->
