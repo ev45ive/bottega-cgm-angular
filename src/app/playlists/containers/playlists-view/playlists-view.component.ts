@@ -17,7 +17,25 @@ export class PlaylistsViewComponent {
 
   selectPlaylistById(id: string) {
     this.selectedId = id;
-    this.selected = this.playlists.find((p) => p.id == id)!;
+
+    // const selected = this.playlists.find((p) => p.id == id) as any;
+    // const result = selected.get.me.a.million.dollars.and.a.cheesburger().now(42);
+
+    // const selected = this.playlists.find((p) => p.id == id) as Playlist
+    // const selected = this.playlists.find((p) => p.id == id) !
+    // const selected = {} as Playlist
+
+    const selected = this.playlists.find((p) => p.id == id);
+
+    // Type Narrowing
+    if (selected) {
+      this.selected = selected; // Playlist
+    } else if (!selected) {
+      selected; // undefined
+    } else {
+      selected satisfies never; // never - exhaustiveness check
+      throw new Error('Unsuported');
+    }
   }
 
   showDetails() {
