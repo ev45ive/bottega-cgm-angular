@@ -1,7 +1,7 @@
 <!-- <div *ngFor="let item of [1,2,3,4]"></div> -->
 
 <div class="grid gap-4 grid-cols-1 sm:grid-cols-3 md:grid-cols-4">
-  @for (item of [1, 2, 3, 4, 5]; track item) {
+  @for (item of results; track item) {
     <app-album-card />
   }
 </div>

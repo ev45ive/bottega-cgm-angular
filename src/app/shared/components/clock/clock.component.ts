@@ -11,7 +11,7 @@ import {
 
 @Component({
   selector: 'app-clock',
-  template: ` <p>clock: {{ time }}</p> `,
+  template: ` <div> {{ time }}</div> `,
   styles: ``,
   // changeDetection: ChangeDetectionStrategy.OnPush // d|-_-|b
 })

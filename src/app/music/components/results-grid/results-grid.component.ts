@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AlbumCardComponent } from "../album-card/album-card.component";
+import { Album } from '../../../core/services/model/album';
 
 @Component({
     selector: 'app-results-grid',
@@ -10,4 +11,5 @@ import { AlbumCardComponent } from "../album-card/album-card.component";
 })
 export class ResultsGridComponent {
 
+    @Input() results: Album[] = [];
 }
