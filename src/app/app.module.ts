@@ -1,4 +1,4 @@
-import { ApplicationRef, DoBootstrap, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,7 +12,6 @@ import { SharedModule } from './shared/shared.module';
   ],
   imports: [
     BrowserModule,
-    // PlaylistsModule,
     AppRoutingModule,
     SharedModule
   ],
