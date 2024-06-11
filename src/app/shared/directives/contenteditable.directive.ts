@@ -1,4 +1,4 @@
-import { Directive, ElementRef } from '@angular/core';
+import { Directive, ElementRef, HostBinding, HostListener } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Directive({
@@ -12,26 +12,37 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ],
 })
 export class ContenteditableDirective implements ControlValueAccessor {
+  // constructor(private elem: ElementRef<HTMLElement>) {}
 
-  // Bridge Pattern - Extend Abstract NgModel with Concrete Control implementation
-
+  @HostBinding('aria-disabled')
+  @HostBinding('class.bg-gray-200')
   isDisabled = false;
-  constructor(private elem: ElementRef<HTMLElement>) {}
+  
+  @HostBinding('innerHTML')
+  value: any;
+
+  @HostListener('input',['$event.target.innerHTML'])
+  onChange:any 
+
+  @HostListener('blur',['$event.target.innerHTML'])
+  onTouched:any 
+
 
   writeValue(obj: any): void {
-    this.elem.nativeElement.innerHTML = obj;
+    this.value = obj
   }
 
   registerOnChange(fn: any): void {
-    this.elem.nativeElement.oninput = () => fn(this.elem.nativeElement.innerHTML);
+    this.onChange = fn
   }
-
+  
   registerOnTouched(fn: any): void {
-    this.elem.nativeElement.onblur = fn
+    this.onTouched = fn
   }
 
   setDisabledState?(isDisabled: boolean): void {
     this.isDisabled = isDisabled;
-    // this.elem.nativeElement.classList.toggle('bg-gray-200')
   }
 }
+
+// const dir = new ContenteditableDirective()
