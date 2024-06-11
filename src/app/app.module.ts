@@ -7,6 +7,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { SharedModule } from './shared/shared.module';
 import { environment } from '../environments/environment';
 import { API_URL } from './tokens';
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { API_URL } from './tokens';
     SharedModule
   ],
   providers: [
+    provideHttpClient(),
     provideClientHydration(),
     provideAnimationsAsync(),
     {
