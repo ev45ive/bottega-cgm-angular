@@ -4,6 +4,7 @@ import { PlaylistEditorComponent } from './playlist-editor.component';
 import { By } from '@angular/platform-browser';
 import { SharedModule } from '../../../shared/shared.module';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
+import { mockPlaylists } from '../playlist-list/mockPlaylists';
 
 fdescribe('PlaylistEditorComponent', () => {
   let component: PlaylistEditorComponent;
@@ -23,6 +24,11 @@ fdescribe('PlaylistEditorComponent', () => {
     // fixture.nativeElement
     // fixture.ngZone
     component = fixture.componentInstance;
+
+    // component.cancel.subscribe(spy)
+    // expect(spy).toHaveBeenCalled()
+
+    component.playlist = mockPlaylists[0]
     fixture.detectChanges();
   });
   it('should create', () => {
