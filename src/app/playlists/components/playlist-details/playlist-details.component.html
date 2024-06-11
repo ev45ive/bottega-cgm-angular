@@ -1,7 +1,4 @@
-<p>playlist-details works!</p>
-
-<!-- .grid.gap-5>.grid.gap-2*3>div{Name}+div{Playlist} -->
-
+ 
 <div
   class="grid gap-5"
   [title]="playlist.name"
@@ -14,28 +11,11 @@
   </div>
 
   <div class="grid gap-2">
-    <div>Public</div>
-    <!-- <div [ngClass]="calculatedStyles"></div>
-    <div [ngClass]="getMyCalculatedStyles()"></div> -->
-    
-    <!-- <div
-      [style.border-bottom]="'1px solid '"
-      [style.color]="playlist.public ? 'red' : 'green'"
-    ></div> -->
+    <div>Public</div> 
 
-    <div [ngStyle]="{ color: playlist.public ? 'red' : 'green' }"></div>
-    <div [ngClass]="{ isPublic: playlist.public,  isPrivate: !playlist.public }"></div>
-
-    <!-- @Directive{ [ngStyle] }   -->
-    <!-- dir = new NgStyle(ElementRef, Renderer2)
-    dir.ngStyle = { color: ... }
-    dir.ngDoCheck() -->
-    
-    <!-- @Directive{ [ngClass] }   -->
-    <!-- dir = new NgClass(ElementRef, Renderer2)
-    dir.ngClass = { isPublic: ... }
-    dir.ngDoCheck() -->
-
+    <!-- <div [ngStyle]="{ color: playlist.public ? 'red' : 'green' }"></div> -->
+    <!-- <div [ngClass]="{ isPublic: playlist.public,  isPrivate: !playlist.public }"></div> -->
+ 
     <div
       [class.isPublic]="playlist.public"
       [class.isPrivate]="!playlist.public"

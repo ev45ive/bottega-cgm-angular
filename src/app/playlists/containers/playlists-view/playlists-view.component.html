@@ -1,24 +1,16 @@
-<p>playlists-view works!</p>
-<!-- .grid.grid-cols-2 -->
+ 
 
 <div class="grid grid-cols-2 gap-5">
   <div>
-    <app-playlist-list />
+    
+    
+    <app-playlist-list    /> 
   </div>
 
-  <div>
-    <!-- Error: NG0201: No provider for _TemplateRef found. Find more at https://angular.dev/errors/NG0201 -->
-    <!-- <app-playlist-details [ngIf]="mode === 'details'" /> -->
-    <!-- <app-playlist-editor [hidden]="mode !== 'editor'" /> -->
-
-    <!-- <ng-template [ngIf]="mode === 'details'" [ngIfThen]="detailsRef" [ngIfElse]="editorRef"/> -->
-
-    <!-- <ng-tempalte ngIf -->
-    <!-- <app-playlist-details *ngIf="mode === 'details' then detailsRef else editorRef" /> -->
-
+  <div> 
     
     <ng-container [ngSwitch]="mode">
-      <app-playlist-details *ngSwitchDefault />
+      <app-playlist-details *ngSwitchDefault  />
       <app-playlist-editor *ngSwitchCase="'editor'" />
     </ng-container>
 
