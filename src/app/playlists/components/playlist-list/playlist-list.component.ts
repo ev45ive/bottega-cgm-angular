@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Playlist } from './Playlist';
 
 @Component({
@@ -7,11 +7,16 @@ import { Playlist } from './Playlist';
   styleUrl: './playlist-list.component.scss',
 })
 export class PlaylistListComponent {
-  playlists: Playlist[] = [];
-  selectedId = '';
+
+  // Stateless / Controlled 
+  
+  @Input('items') playlists: Playlist[] = [];
+  @Input() selectedId = '';
+  
+  @Output() selectedIdChange = new EventEmitter<Playlist['id']>();
 
   select(id: string) {
-    this.selectedId = id;
+    this.selectedIdChange.emit(id)
   }
 
   byId(index: number, p: { id: string }) {

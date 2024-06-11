@@ -8,6 +8,10 @@ import { mockPlaylists } from '../../components/playlist-list/mockPlaylists';
   styleUrl: './playlists-view.component.scss',
 })
 export class PlaylistsViewComponent {
+  selectPlaylistById(id: string) {
+    this.selectedId = id;
+    this.selected = this.playlists.find((p) => p.id == id)!;
+  }
   mode: 'details' | 'editor' = 'details';
 
   playlists = mockPlaylists;

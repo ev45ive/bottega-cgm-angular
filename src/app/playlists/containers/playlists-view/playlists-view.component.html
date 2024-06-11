@@ -1,16 +1,23 @@
- 
-
 <div class="grid grid-cols-2 gap-5">
   <div>
-    
-    
-    <app-playlist-list    /> 
+    <app-playlist-list
+      [items]="playlists"
+      (selectedIdChange)="selectPlaylistById($event)"
+      [selectedId]="selectedId"
+    />
+
+    <app-playlist-list
+      [items]="playlists"
+      (selectedIdChange)="selectPlaylistById($event)"
+      [selectedId]="selectedId"
+    />
+
+    <!-- <input type="text" [value]="123" (keydown)="$event"> -->
   </div>
 
-  <div> 
-    
+  <div>
     <ng-container [ngSwitch]="mode">
-      <app-playlist-details *ngSwitchDefault  />
+      <app-playlist-details *ngSwitchDefault />
       <app-playlist-editor *ngSwitchCase="'editor'" />
     </ng-container>
 
@@ -25,12 +32,9 @@
   </div>
 </div>
 
-
-
 <ng-template #detailsRef>
   <app-playlist-details />
 </ng-template>
-
 
 <ng-template #editorRef>
   <app-playlist-editor />
