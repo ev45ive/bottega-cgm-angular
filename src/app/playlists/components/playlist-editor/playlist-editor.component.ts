@@ -5,6 +5,7 @@ import {
   ElementRef,
   Host,
   Optional,
+  ViewChild,
 } from '@angular/core';
 import { PlaylistsViewComponent } from '../../containers/playlists-view/playlists-view.component';
 import { AppComponent } from '../../../app.component';
@@ -12,6 +13,7 @@ import {
   ErrorStateMatcher,
   ShowOnDirtyErrorStateMatcher,
 } from '@angular/material/core';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-playlist-editor',
@@ -40,4 +42,13 @@ export class PlaylistEditorComponent {
     public: true,
     description: 'Best playlsit',
   };
+
+  @ViewChild('inputRef', { read: NgModel, static: false })
+  inputRef?: NgModel;
+
+  ngAfterContentInit(): void {
+    this.inputRef?.value;
+  }
+  
+  hasUnsavedChanges = false;
 }
