@@ -7,9 +7,8 @@ import { Playlist } from './Playlist';
   styleUrl: './playlist-list.component.scss',
 })
 export class PlaylistListComponent {
-
   // Stateless / Controlled 
-  
+
   @Input('items') playlists: Playlist[] = [];
   @Input() selectedId = '';
   
