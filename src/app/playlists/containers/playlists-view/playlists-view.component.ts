@@ -30,7 +30,7 @@ export class PlaylistsViewComponent {
   }
 
   savePlaylist(draft: Playlist) {
-    console.log('saving');
+    console.log('saving', draft);
   }
 
   @ViewChild(PlaylistEditorComponent)

@@ -11,10 +11,6 @@
 
   <div class="grid gap-2">
     <div>Public</div>
-
-    <!-- <div [ngStyle]="{ color: playlist.public ? 'red' : 'green' }"></div> -->
-    <!-- <div [ngClass]="{ isPublic: playlist.public,  isPrivate: !playlist.public }"></div> -->
-
     <div
       [class.isPublic]="playlist.public"
       [class.isPrivate]="!playlist.public"
@@ -29,7 +25,10 @@
   </div>
 
   <div class="flex justify-between mt-5">
-    <button mat-flat-button color="primary" (click)="(0)">Edit</button>
+    <button mat-flat-button color="primary" (click)="clickEdit()">Edit</button>
+
+    <!-- <button mat-flat-button color="primary" 
+      (click)="edit.emit()">Edit</button> -->
   </div>
 </div>
 

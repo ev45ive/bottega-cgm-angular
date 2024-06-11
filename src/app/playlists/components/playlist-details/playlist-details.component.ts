@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import { Playlist } from '../playlist-list/Playlist';
 
 @Component({
   selector: 'app-playlist-details',
@@ -7,10 +8,12 @@ import { Component, ViewEncapsulation } from '@angular/core';
   // encapsulation: ViewEncapsulation.None
 })
 export class PlaylistDetailsComponent {
-  playlist = {
-    id: '123',
-    name: 'Playlist 123',
-    public: true,
-    description: 'Best playlsit',
-  };
+  @Input({ required: true }) playlist!: Playlist;
+
+  @Output() edit = new EventEmitter();
+
+  clickEdit(){
+    this.edit.emit()
+  }
+
 }
