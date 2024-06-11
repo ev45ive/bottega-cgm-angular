@@ -4,6 +4,7 @@ import { environment } from '../../../environments/environment';
 import { API_URL } from '../../tokens';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
+import { AlbumResponse } from './model/album';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class MusicApiService {
   fetchAlbum(query:string){
     
     // Unicast Observable // 1-1 // Recipe
-    const obs = this.http.get(this.api_url + 'search',{
+    const obs = this.http.get<AlbumResponse[]>(this.api_url + 'search',{
       headers:{
         Authorization:'Bearer lubieplacki'
       },
@@ -25,17 +26,7 @@ export class MusicApiService {
         q: query
       },
     })
-
-    // Cooking Recipe
-    const sub: Subscription = obs.subscribe(console.log)
-    sub.unsubscribe()
-
-    obs.subscribe({
-      next: (value) => console.log('next',value),
-      error: (err) => console.log('error',err),
-      complete: () => console.log('complete'),
-    })
     
-    return mockAlbums
+    return obs
   }
 }

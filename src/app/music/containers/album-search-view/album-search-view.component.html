@@ -2,4 +2,9 @@
 
 <app-search-form (search)="searchAlbums($event)" />
 
+
+@if(message){
+    <p class="text-red-500 p-5">{{message}}</p>
+}
+
 <app-results-grid [results]="results" />

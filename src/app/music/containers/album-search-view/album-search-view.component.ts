@@ -14,11 +14,18 @@ import { Album } from '../../../core/services/model/album';
 })
 export class AlbumSearchViewComponent {
     results:Album[] = []
+    message = ''
 
     constructor(private api: MusicApiService){}
     
     searchAlbums(query: string) {
-        this.results = this.api.fetchAlbum(query)    
+       this.api
+        .fetchAlbum(query) 
+        .subscribe({
+            next: (value) =>  this.results = value,
+            error: (error) => this.message = error.error.error.message,
+            complete: () => console.log('complete'),
+        })
     }
     
     // ngOnInit(): void {
