@@ -7,6 +7,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatFormField } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 import { CensorDirective } from './directives/censor.directive';
 import { ContenteditableDirective } from './directives/contenteditable.directive';
 
@@ -17,7 +18,8 @@ export const MaterialImports = [
   MatListModule,
   MatFormField,
   MatInputModule,
-  MatCardModule
+  MatCardModule,
+  MatIconModule
 ]
 
 @NgModule({
