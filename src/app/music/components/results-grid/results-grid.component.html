@@ -2,6 +2,6 @@
 
 <div class="grid gap-4 grid-cols-1 sm:grid-cols-3 md:grid-cols-4">
   @for (item of results; track item) {
-    <app-album-card />
+    <app-album-card [album]="item" />
   }
 </div>
