@@ -1,8 +1,11 @@
-<mat-list>
-  <mat-list-item *ngFor="let playlist of playlists; index as i; trackBy byId">
+<mat-nav-list>
+  <mat-list-item
+    [activated]="true"
+    *ngFor="let playlist of playlists; index as i; trackBy: byId"
+  >
     {{ i + 1 }}. {{ playlist.name }}
   </mat-list-item>
-</mat-list>
+</mat-nav-list>
 
 <!-- <mat-list-item *ngFor="let playlist = $implicit; of playlists;  index as i"> -->
 
