@@ -28,7 +28,9 @@ git clone https://github.com/ev45ive/bottega-cgm-angular.git
 npm install
 npm start
 
-
+# Zscaler GIT error
+git config http.sslVerify "false"
+git config --bool --add http.https://github.com.sslverify false
 
 ## Semver
 https://semver.org/
