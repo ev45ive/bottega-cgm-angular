@@ -7,6 +7,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatFormField } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CensorDirective } from './directives/censor.directive';
+import { ContenteditableDirective } from './directives/contenteditable.directive';
 
 const MaterialImports = [
   MatButtonModule,
@@ -18,7 +19,8 @@ const MaterialImports = [
 @NgModule({
   declarations: [
     ClockComponent,
-    CensorDirective
+    CensorDirective,
+    ContenteditableDirective
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ const MaterialImports = [
     CommonModule,
     FormsModule,
     MaterialImports,
-    CensorDirective
+    CensorDirective,
+    ContenteditableDirective
   ]
 })
 export class SharedModule { }
