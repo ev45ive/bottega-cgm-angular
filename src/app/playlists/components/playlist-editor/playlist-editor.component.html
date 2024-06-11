@@ -1,66 +1,63 @@
-<p>playlist-editor works!</p>
+<div *ngIf="playlist">
+  <p>playlist-editor works!</p>
 
-<pre>{{ playlist | json }}</pre>
+  <pre>{{ playlist | json }}</pre>
 
-<!-- .grid.gap-5>.grid.gap-2*3>label{Name}+input -->
-<div class="grid gap-5">
-  <div class="grid gap-2">
-    <mat-form-field>
-      <mat-label>Name</mat-label>
+  <!-- .grid.gap-5>.grid.gap-2*3>label{Name}+input -->
+  <div class="grid gap-5">
+    <div class="grid gap-2">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
 
-      <input
-        id="playlist_name"
-        type="text"
-        #inputRef
-        #modelRef="ngModel"
-        #matINputREf="matInput"
-        [(ngModel)]="playlist.name"
-        matInput
-        required
-        minlength="3"
-        appCensor
-      />
+        <input
+          id="playlist_name"
+          type="text"
+          #inputRef
+          #modelRef="ngModel"
+          #matINputREf="matInput"
+          [(ngModel)]="playlist.name"
+          matInput
+          required
+          minlength="3"
+          appCensor
+        />
 
-      <mat-error *ngIf="modelRef.getError('required')"
-        >Field required</mat-error
-      >
-      <mat-error *ngIf="modelRef.getError('minlength') as error">
-        Minumum length {{ error.requiredLength }}
-      </mat-error>
-      <mat-error *ngIf="modelRef.getError('censor') as error">
-        Cannot contain {{ error.badword }}
-      </mat-error>
+        <mat-error *ngIf="modelRef.getError('required')"
+          >Field required</mat-error
+        >
+        <mat-error *ngIf="modelRef.getError('minlength') as error">
+          Minumum length {{ error.requiredLength }}
+        </mat-error>
+        <mat-error *ngIf="modelRef.getError('censor') as error">
+          Cannot contain {{ error.badword }}
+        </mat-error>
 
-      <mat-hint>{{ modelRef.value?.length }} / 100</mat-hint>
-    </mat-form-field>
+        <mat-hint>{{ modelRef.value?.length }} / 100</mat-hint>
+      </mat-form-field>
 
-    <pre>{{ modelRef.errors | json }}</pre>
+      <pre>{{ modelRef.errors | json }}</pre>
+    </div>
+
+    <div class="grid gap-2">
+      <label for="">
+        <input type="checkbox" [(ngModel)]="playlist.public" />Public
+      </label>
+    </div>
+
+    <div class="grid gap-2">
+      <label for="">Description</label>
+      <textarea [(ngModel)]="playlist.description"></textarea>
+    </div>
+    <div class="grid gap-2">
+      <!-- Error: NG01203: No value accessor for form control unspecified name attribute. Find more at https://angular.dev/errors/NG01203 -->
+      <label for="">Description</label>
+      <div contenteditable="true" [(ngModel)]="playlist.description"></div>
+    </div>
+
+    <div>
+      <button mat-flat-button color="warn" (click)="close()">Cancel</button>
+
+      <button mat-flat-button color="warn" (click)="submit()">Save</button>
+    </div>
   </div>
-
-  <div class="grid gap-2">
-    <label for="">
-      <input type="checkbox" [(ngModel)]="playlist.public" />Public
-    </label>
-  </div>
-
-  <div class="grid gap-2">
-    <label for="">Description</label>
-    <textarea [(ngModel)]="playlist.description"></textarea>
-  </div>
-  <div class="grid gap-2">
-    <!-- Error: NG01203: No value accessor for form control unspecified name attribute. Find more at https://angular.dev/errors/NG01203 -->
-    <label for="">Description</label>
-    <div contenteditable="true" [(ngModel)]="playlist.description"></div>
-  </div>
-  
-  <div>
-
-    <button mat-flat-button color="warn" (click)="close()">
-      Cancel
-    </button>
-
-    <button mat-flat-button color="warn" (click)="submit()">
-      Save
-    </button>
-  </div>
-  </div>
+</div>

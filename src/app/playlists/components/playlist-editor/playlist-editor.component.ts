@@ -19,6 +19,12 @@ import {
 import { NgModel } from '@angular/forms';
 import { Playlist } from '../playlist-list/Playlist';
 
+const EMPTY_PLAYLIST = {
+  id: '',
+  name: '',
+  public: false,
+  description: '',
+};
 // Command pattern
 // class PlaylsitEditCommand{
 //   readonly type = 'Playlist Edit'
@@ -37,7 +43,8 @@ import { Playlist } from '../playlist-list/Playlist';
   ],
 })
 export class PlaylistEditorComponent {
-  @Input({ required: true }) playlist!: Playlist;
+  @Input() playlist?: Playlist = EMPTY_PLAYLIST;
+
   @Output() cancel = new EventEmitter<void>();
   @Output() save = new EventEmitter<Playlist>();
 

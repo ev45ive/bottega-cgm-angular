@@ -15,13 +15,19 @@
         [playlist]="selected"
         (edit)="showEditor()"
       />
-<!-- 
+
       <app-playlist-editor
         *ngSwitchCase="'editor'"
         [playlist]="selected"
         (cancel)="showDetails()"
         (save)="savePlaylist($event)"
-      /> -->
+      />
+
+      <app-playlist-editor
+        *ngSwitchCase="'editor'" 
+        (cancel)="showDetails()"
+        (save)="savePlaylist($event)"
+      />
 
     </ng-container>
   </div>
