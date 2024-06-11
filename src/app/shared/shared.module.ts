@@ -10,7 +10,9 @@ import { MatCardModule } from '@angular/material/card';
 import { CensorDirective } from './directives/censor.directive';
 import { ContenteditableDirective } from './directives/contenteditable.directive';
 
-const MaterialImports = [
+export const MaterialImports = [
+  CommonModule,
+  FormsModule,
   MatButtonModule,
   MatListModule,
   MatFormField,
@@ -25,14 +27,10 @@ const MaterialImports = [
     ContenteditableDirective
   ],
   imports: [
-    CommonModule,
-    FormsModule,
     MaterialImports 
   ],
   exports:[
     ClockComponent,
-    CommonModule,
-    FormsModule,
     MaterialImports,
     CensorDirective,
     ContenteditableDirective
