@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { SearchFormComponent } from "../../components/search-form/search-form.component";
 import { ResultsGridComponent } from "../../components/results-grid/results-grid.component";
 import { mockAlbums } from '../../../core/fixtures/mockAlbums';
+import { MusicApiService } from '../../../core/services/music-api.service';
+import { Album } from '../../../core/services/model/album';
 
 @Component({
     selector: 'app-album-search-view',
@@ -12,5 +14,12 @@ import { mockAlbums } from '../../../core/fixtures/mockAlbums';
 })
 export class AlbumSearchViewComponent {
 
-    results = mockAlbums
+    constructor(private api:MusicApiService){}
+
+    results:Album[] = []
+
+    searchAlbums(query: string) {
+        this.results= this.api.fetchAlbum(query)    
+    }
+
 }

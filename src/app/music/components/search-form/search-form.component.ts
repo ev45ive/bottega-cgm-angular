@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MaterialImports, SharedModule } from '../../../shared/shared.module';
 
 @Component({
@@ -10,4 +10,11 @@ import { MaterialImports, SharedModule } from '../../../shared/shared.module';
 })
 export class SearchFormComponent {
 
+  query = ''
+
+  @Output() search = new EventEmitter<string>();
+
+  submit(){
+    this.search.emit(this.query)
+  }
 }

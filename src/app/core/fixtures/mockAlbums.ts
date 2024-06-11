@@ -5,7 +5,7 @@ export const mockAlbums: Album[] = [
         id: "1",
         images: [
             {
-                url: "https://example.com/album1.jpg",
+                url: "https://unsplash.it/300?gravity=center",
                 height: 300,
                 width: 300
             }
@@ -16,7 +16,7 @@ export const mockAlbums: Album[] = [
         id: "2",
         images: [
             {
-                url: "https://example.com/album2.jpg",
+                url: "https://unsplash.it/300?gravity=center",
                 height: 300,
                 width: 300
             }
@@ -27,7 +27,7 @@ export const mockAlbums: Album[] = [
         id: "3",
         images: [
             {
-                url: "https://example.com/album3.jpg",
+                url: "https://unsplash.it/300?gravity=center",
                 height: 300,
                 width: 300
             }
@@ -38,7 +38,7 @@ export const mockAlbums: Album[] = [
         id: "4",
         images: [
             {
-                url: "https://example.com/album4.jpg",
+                url: "https://unsplash.it/300?gravity=center",
                 height: 300,
                 width: 300
             }
@@ -49,7 +49,7 @@ export const mockAlbums: Album[] = [
         id: "5",
         images: [
             {
-                url: "https://example.com/album5.jpg",
+                url: "https://unsplash.it/300?gravity=center",
                 height: 300,
                 width: 300
             }

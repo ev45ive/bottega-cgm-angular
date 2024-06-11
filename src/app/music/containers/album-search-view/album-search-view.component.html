@@ -1,5 +1,5 @@
 <h3 class="text-4xl leading-loose font-thin">Search</h3>
 
-<app-search-form />
+<app-search-form (search)="searchAlbums($event)" />
 
 <app-results-grid [results]="results" />

@@ -8,7 +8,9 @@ export class MusicApiService {
 
   constructor() { }
 
-  fetchAlbum(){
+  fetchAlbum(query:string){
+    console.log('Searching ... ',query);
+    
     return mockAlbums
   }
 }

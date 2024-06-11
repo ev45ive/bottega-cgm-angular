@@ -1,16 +1,23 @@
-<div class="">
-  <mat-form-field class="w-full">
-    <mat-label>Search</mat-label>
+<form (submit)="submit()">
+  <div class="">
+    <mat-form-field class="w-full">
+      <mat-label>Search</mat-label>
 
-    <input type="text" matInput />
+      <input type="text" matInput [(ngModel)]="query" name="query" />
 
-    <mat-hint></mat-hint>
-    <mat-error></mat-error>
-  </mat-form-field>
+      <mat-hint></mat-hint>
+      <mat-error></mat-error>
+    </mat-form-field>
 
-  <div class="relative h-0 w-full flex justify-end">
-    <button class="absolute bottom-12 right-5" mat-fab color="primary">
-      <mat-icon>search</mat-icon>
-    </button>
+    <div class="relative h-0 w-full flex justify-end z-50">
+      <button
+        type="submit"
+        class="absolute bottom-12 right-5"
+        mat-fab
+        color="primary"
+      >
+        <mat-icon>search</mat-icon>
+      </button>
+    </div>
   </div>
-</div>
+</form>
