@@ -98,5 +98,30 @@ ng g c playlists/components/playlist-list
 ng g c playlists/components/playlist-details
 ng g c playlists/components/playlist-editor
 
+# Music / search 
+
+ng g m music -m app --route music --routing  
+
+ng g c music/containers/AlbumDetailsView
+ng g c music/containers/AlbumSearchView
+
+ng g c music/components/SearchForm
+ng g c music/components/AlbumCard
+ng g c music/components/ResultsGrid
+
+ng g s core/services/music-api 
+
+
+
+# Module / Architecture
+
+     Core  (providers v )
+    /   \
+  FeatA FeatB 
+          - containers
+          - components
+    \   /
+    Shared (exports  ^ )
+
 # Testing 
 https://ngneat.github.io/spectator/docs/testing-with-routing
