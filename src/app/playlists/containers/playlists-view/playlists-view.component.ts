@@ -16,12 +16,12 @@ export class PlaylistsViewComponent {
   selectedId = '234';
 
   selectPlaylistById(id: string) {
+    // this.editorRef?.hasUnsavedChanges; // ???
     this.selectedId = id;
     this.selected = this.playlists.find((p) => p.id == id);
   }
 
   showDetails() {
-    this.editorRef?.hasUnsavedChanges;
     this.mode = 'details';
   }
 

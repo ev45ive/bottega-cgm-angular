@@ -17,7 +17,7 @@ import {
   ErrorStateMatcher,
   ShowOnDirtyErrorStateMatcher,
 } from '@angular/material/core';
-import { NgModel } from '@angular/forms';
+import { NgForm, NgModel } from '@angular/forms';
 import { Playlist } from '../playlist-list/Playlist';
 
 const EMPTY_PLAYLIST = {
@@ -50,34 +50,44 @@ export class PlaylistEditorComponent {
   @Output() cancel = new EventEmitter<void>();
   @Output() save = new EventEmitter<Playlist>();
 
-  constructor() {
-    console.log('constructor');
-  }
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log('ngOnChanges', changes);
-  }
-  ngOnInit(): void {
-    console.log('ngOnInit');
-  }
-  ngDoCheck(): void {
-    console.log('ngDoCheck');
-  }
-  ngAfterViewInit(): void {
-    console.log('ngAfterViewInit');
-  }
-  ngAfterViewChecked(): void {
-    console.log('ngAfterViewChecked');
-  }
-  ngOnDestroy(): void {
-    console.log('ngOnDestroy');
-  }
+  // constructor() {
+  //   console.log('constructor');
+  // }
+  // ngOnChanges(changes: SimpleChanges): void {
+  //   console.log('ngOnChanges', changes);
+  // }
+  // ngOnInit(): void {
+  //   console.log('ngOnInit');
+  // }
+  // ngDoCheck(): void {
+  //   console.log('ngDoCheck');
+  // }
+  // ngAfterViewInit(): void {
+  //   console.log('ngAfterViewInit');
+  // }
+  // ngAfterViewChecked(): void {
+  //   console.log('ngAfterViewChecked');
+  // }
+  // ngOnDestroy(): void {
+  //   console.log('ngOnDestroy');
+  // }
 
   close() {
     this.cancel.emit();
   }
   submit() {
-    this.save.emit(this.playlist);
+    if (this.formRef?.invalid) return;
+
+    const draft = {
+      ...this.playlist,
+      ...this.formRef?.value,
+    };
+    
+    this.save.emit(draft);
   }
+
+  @ViewChild('formRef', { read: NgForm, static: false })
+  formRef?: NgForm;
 
   @ViewChild('inputRef', { read: NgModel, static: false })
   inputRef?: NgModel;

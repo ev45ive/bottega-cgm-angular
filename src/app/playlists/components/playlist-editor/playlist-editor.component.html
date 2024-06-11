@@ -1,7 +1,8 @@
-<div *ngIf="playlist">
-  <p>playlist-editor works!</p>
+<form *ngIf="playlist" (ngSubmit)="submit()" #formRef="ngForm">
+  
 
   <pre>{{ playlist | json }}</pre>
+  <pre>{{ formRef.value| json }}</pre>
 
   <!-- .grid.gap-5>.grid.gap-2*3>label{Name}+input -->
   <div class="grid gap-5">
@@ -14,14 +15,14 @@
           type="text"
           #inputRef
           #modelRef="ngModel"
-          #matINputREf="matInput"
-          [(ngModel)]="playlist.name"
+          [ngModel]="playlist.name"
+          name="name"
           matInput
           required
           minlength="3"
           appCensor
         />
-
+        <!-- {{modelRef.value}} -->
         <mat-error *ngIf="modelRef.getError('required')"
           >Field required</mat-error
         >
@@ -40,24 +41,31 @@
 
     <div class="grid gap-2">
       <label for="">
-        <input type="checkbox" [(ngModel)]="playlist.public" />Public
+        <input
+          type="checkbox"
+          [(ngModel)]="playlist.public"
+          name="public"
+        />Public
       </label>
     </div>
 
     <div class="grid gap-2">
       <label for="">Description</label>
-      <textarea [(ngModel)]="playlist.description"></textarea>
+      <textarea
+        [(ngModel)]="playlist.description"
+        name="description"
+      ></textarea>
     </div>
-    <div class="grid gap-2">
-      <!-- Error: NG01203: No value accessor for form control unspecified name attribute. Find more at https://angular.dev/errors/NG01203 -->
+    <!-- <div class="grid gap-2">
       <label for="">Description</label>
-      <div contenteditable="true" [(ngModel)]="playlist.description"></div>
-    </div>
+      <div contenteditable="true" [(ngModel)]="playlist.description" 
+      name="description"></div>
+    </div> -->
 
     <div>
       <button mat-flat-button color="warn" (click)="close()">Cancel</button>
 
-      <button mat-flat-button color="warn" (click)="submit()">Save</button>
+      <button mat-flat-button color="warn" type="submit">Save</button>
     </div>
   </div>
-</div>
+</form>
