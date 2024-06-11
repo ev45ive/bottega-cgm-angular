@@ -30,10 +30,10 @@ export class PlaylistEditorComponent {
     private elem: ElementRef<HTMLDivElement>,
 
     // High coupling!
-    @Host() @Optional() private parent: PlaylistsViewComponent,
+    // @Host() @Optional() private parent: PlaylistsViewComponent,
 
     // Singleton
-    private app: AppComponent
+    // private app: AppComponent
   ) {}
 
   playlist = {
@@ -49,6 +49,6 @@ export class PlaylistEditorComponent {
   ngAfterContentInit(): void {
     this.inputRef?.value;
   }
-  
+
   hasUnsavedChanges = false;
 }

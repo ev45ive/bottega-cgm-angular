@@ -2,6 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PlaylistEditorComponent } from './playlist-editor.component';
 import { By } from '@angular/platform-browser';
+import { SharedModule } from '../../../shared/shared.module';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 
 fdescribe('PlaylistEditorComponent', () => {
   let component: PlaylistEditorComponent;
@@ -10,6 +12,8 @@ fdescribe('PlaylistEditorComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [PlaylistEditorComponent],
+      imports: [SharedModule],
+      providers: [provideNoopAnimations()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PlaylistEditorComponent);
@@ -21,16 +25,24 @@ fdescribe('PlaylistEditorComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-  
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
   it('should update model', () => {
     const playlist_name = fixture.debugElement.query(By.css('#playlist_name'));
     playlist_name.nativeElement.value = 'placki';
     playlist_name.nativeElement.dispatchEvent(new InputEvent('input'));
     fixture.detectChanges();
-    expect(component.playlist.name).toEqual('placki 123')
+    expect(component.playlist.name).toEqual('placki');
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('validate', () => {
+    const playlist_name = fixture.debugElement.query(By.css('#playlist_name'));
+    playlist_name.nativeElement.value = 'batman';
+    playlist_name.nativeElement.dispatchEvent(new InputEvent('input'));
+    playlist_name.nativeElement.dispatchEvent(new InputEvent('blur'));
+    fixture.detectChanges();
+    expect(fixture.nativeElement.textContent).toMatch('Cannot contain batman');
   });
 });

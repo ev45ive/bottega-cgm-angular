@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PlaylistsComponent } from './playlists.component';
+import { RouterOutlet } from '@angular/router';
 
 describe('PlaylistsComponent', () => {
   let component: PlaylistsComponent;
@@ -8,9 +9,9 @@ describe('PlaylistsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PlaylistsComponent]
-    })
-    .compileComponents();
+      declarations: [PlaylistsComponent],
+      imports: [RouterOutlet],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PlaylistsComponent);
     component = fixture.componentInstance;

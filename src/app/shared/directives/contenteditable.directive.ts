@@ -14,7 +14,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 export class ContenteditableDirective implements ControlValueAccessor {
   // constructor(private elem: ElementRef<HTMLElement>) {}
 
-  @HostBinding('aria-disabled')
+  @HostBinding('attr.aria-disabled')
   @HostBinding('class.bg-gray-200')
   isDisabled = false;
   

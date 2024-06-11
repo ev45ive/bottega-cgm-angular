@@ -98,3 +98,5 @@ ng g c playlists/components/playlist-list
 ng g c playlists/components/playlist-details
 ng g c playlists/components/playlist-editor
 
+# Testing 
+https://ngneat.github.io/spectator/docs/testing-with-routing
