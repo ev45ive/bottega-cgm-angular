@@ -14,16 +14,24 @@ export class MusicApiService {
 
   fetchAlbum(query:string){
     
-    this.http.get(this.api_url + 'search',{
+    // Unicast Observable // Recipe
+    const obs = this.http.get(this.api_url + 'search',{
       headers:{
         Authorization:'Bearer lubieplacki'
       },
       params:{
-        type:'album',q:query
+        type: 'album',
+        q: query
       },
-      // reportProgress: true,
-      // transferCache:{}
-       // <script id="ng-state" type="application/json">{"__nghData__":[{}
+    })
+
+    // Cooking Recipe
+    obs.subscribe(console.log)
+
+    obs.subscribe({
+      next: (value) => console.log('next',value),
+      error: (err) => console.log('error',err),
+      complete: () => console.log('complete'),
     })
     
     return mockAlbums
