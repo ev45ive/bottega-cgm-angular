@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatFormField } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 import { CensorDirective } from './directives/censor.directive';
 import { ContenteditableDirective } from './directives/contenteditable.directive';
 
@@ -14,6 +15,7 @@ const MaterialImports = [
   MatListModule,
   MatFormField,
   MatInputModule,
+  MatCardModule
 ]
 
 @NgModule({
