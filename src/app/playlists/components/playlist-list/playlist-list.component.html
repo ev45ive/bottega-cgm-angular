@@ -1,8 +1,11 @@
 <mat-nav-list>
+
   <mat-list-item
-    [activated]="true"
     *ngFor="let playlist of playlists; index as i; trackBy: byId"
+    [activated]="playlist.id === selectedId"
+    (click)="select(playlist.id)"
   >
     {{ i + 1 }}. {{ playlist.name }}
   </mat-list-item>
+  
 </mat-nav-list>
