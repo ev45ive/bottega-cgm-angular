@@ -4,7 +4,7 @@ import { MusicComponent } from './music.component';
 import { AlbumSearchViewComponent } from './containers/album-search-view/album-search-view.component';
 import { AlbumDetailsViewComponent } from './containers/album-details-view/album-details-view.component';
 
-const routes: Routes = [
+const MusicRoutes: Routes = [
   {
     path: /* music/ */ '',
     component: MusicComponent,
@@ -27,8 +27,10 @@ const routes: Routes = [
   },
 ];
 
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-})
-export class MusicRoutingModule {}
+export default MusicRoutes
+
+// @NgModule({
+//   imports: [RouterModule.forChild(MusicRoutes)],
+//   exports: [RouterModule],
+// })
+// export class MusicRoutingModule {}
