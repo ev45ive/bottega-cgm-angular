@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { SharedModule } from './shared/shared.module';
+import { environment } from '../environments/environment';
+import { API_URL } from './tokens';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,16 @@ import { SharedModule } from './shared/shared.module';
   ],
   providers: [
     provideClientHydration(),
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    {
+      provide:  API_URL,
+      useValue: environment.api_url
+    },
+    // Override
+    // {
+    //   provide:  API_URL,
+    //   useValue: 'http://localhost/test-api'
+    // },
   ],
   bootstrap: [ AppComponent /* HeaderComponent, SidebarComponent */]
 })
