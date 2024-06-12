@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { MaterialImports, SharedModule } from '../../../shared/shared.module';
 import {
   AbstractControl,
@@ -37,8 +37,13 @@ import {
   ],
 })
 export class SearchFormComponent {
-  query = '';
   @Output() search = new EventEmitter<string>();
+
+  @Input() set query(q: string) {
+    this.searchForm.get('query')?.setValue(q, {
+      emitEvent: false,
+    });
+  }
 
   isAdvanced = false;
   // bob = inject(FormBuilder);
@@ -74,7 +79,7 @@ export class SearchFormComponent {
     debounceTime(300),
     distinctUntilChanged(),
   );
-  
+
   ngOnInit(): void {
     this.searchChanges.subscribe(this.search);
   }
