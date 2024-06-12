@@ -1,6 +1,11 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { MaterialImports, SharedModule } from '../../../shared/shared.module';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-search-form',
@@ -13,9 +18,15 @@ export class SearchFormComponent {
   query = '';
   @Output() search = new EventEmitter<string>();
 
-  searchForm = new FormGroup({
-    query: new FormControl('batman'),
+  bob = inject(FormBuilder);
+
+  searchForm = this.bob.group({
+    query: ['batman'],
   });
+
+  // searchForm = new FormGroup({
+  //   query: new FormControl('batman'),
+  // });
 
   submit() {
     this.search.emit(this.searchForm.value.query || '');
