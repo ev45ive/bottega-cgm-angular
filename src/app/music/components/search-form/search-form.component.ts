@@ -18,53 +18,6 @@ import {
   ShowOnDirtyErrorStateMatcher,
 } from '@angular/material/core';
 
-const censor =
-  (badword: string): ValidatorFn =>
-  (control: AbstractControl<any, any>): ValidationErrors | null => {
-    return String(control.value).includes(badword)
-      ? { censor: { badword: badword } }
-      : null;
-  };
-
-const AsyncCensor =
-  (badword: string): AsyncValidatorFn =>
-  (control: AbstractControl<any, any>): Observable<ValidationErrors | null> => {
-    const result = censor(badword)(control);
-
-    // UniCast Observable 1-1
-    const obs = new Observable<ValidationErrors | null>((subscriber) => {
-      console.log('Subscribe');
-
-      const handle = setTimeout(() => {
-        subscriber.next(result);
-        console.log('NExt', result);
-
-        subscriber.complete();
-      }, 2000);
-
-      return () => {
-        clearTimeout(handle);
-        console.log('Unsubscribe');
-      };
-    });
-    return obs;
-
-    // obs
-    //   .pipe((previous) => {
-    //     return new Observable((nextOperator) => {
-    //       previous.subscribe({
-    //         next: (value) => nextOperator.next(value),
-    //       });
-    //     });
-    //   })
-    //   .subscribe({
-    //     next: (r) => console.log(r),
-    //     error: (r) => console.log(r),
-    //     complete: () => console.log('complete'),
-    //   })
-    //   .unsubscribe()
-  };
-
 @Component({
   selector: 'app-search-form',
   standalone: true,
@@ -132,3 +85,35 @@ export class SearchFormComponent {
     this.search.emit(this.searchForm.value.query || '');
   }
 }
+
+const censor =
+  (badword: string): ValidatorFn =>
+  (control: AbstractControl<any, any>): ValidationErrors | null => {
+    return String(control.value).includes(badword)
+      ? { censor: { badword: badword } }
+      : null;
+  };
+
+const AsyncCensor =
+  (badword: string): AsyncValidatorFn =>
+  (control: AbstractControl<any, any>): Observable<ValidationErrors | null> => {
+    const result = censor(badword)(control);
+
+    // UniCast Observable 1-1
+    const obs = new Observable<ValidationErrors | null>((subscriber) => {
+      // console.log('Subscribe');
+
+      const handle = setTimeout(() => {
+        subscriber.next(result);
+        // console.log('NExt', result);
+
+        subscriber.complete();
+      }, 2000);
+
+      return () => {
+        clearTimeout(handle);
+        // console.log('Unsubscribe');
+      };
+    });
+    return obs;
+  };
