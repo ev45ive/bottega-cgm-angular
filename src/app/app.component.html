@@ -24,13 +24,25 @@
   </ng-container>
 
   <ng-container ngProjectAs="toolbar">
-    <app-clock />
+    @defer (on hover) {
+      <app-clock />
+    } @placeholder {
+      <p>ZEGAR</p>
+    }
     <button mat-flat-button (click)="login()">Login</button>
   </ng-container>
 
   <div class="container">
     <router-outlet />
   </div>
+
+  @defer (on viewport) {
+    <p>i jestem</p>
+  } @loading {
+    <p>laduje sie</p>
+  } @placeholder {
+    <p>czekam</p>
+  }
 </app-main-layout>
 
 <ng-template #placki></ng-template>
