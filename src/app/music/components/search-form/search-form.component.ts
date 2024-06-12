@@ -39,8 +39,8 @@ import {
 export class SearchFormComponent {
   @Output() search = new EventEmitter<string>();
 
-  @Input() set query(q: string) {
-    this.searchForm.get('query')?.setValue(q, {
+  @Input() set query(q: string | null) {
+    this.searchForm.get('query')?.setValue(q || '', {
       emitEvent: false,
     });
   }

@@ -1,10 +1,14 @@
 <h3 class="text-4xl leading-loose font-thin">Search</h3>
 
-<app-search-form [query]="query" (search)="searchAlbums($event)" />
+<app-search-form
+  [query]="queryChanges | async"
+  (search)="searchAlbums($event)"
+/>
 
-
-@if(message){
+<!-- @if(message){
     <p class="text-red-500 p-5">{{message}}</p>
-}
+} -->
 
-<app-results-grid [results]="results" />
+@if (resultsChanges | async; as results) {
+  <app-results-grid [results]="results" />
+}
