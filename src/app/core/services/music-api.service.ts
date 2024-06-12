@@ -1,10 +1,7 @@
-import { Inject, Injectable, inject } from '@angular/core';
-import { mockAlbums } from '../fixtures/mockAlbums';
-import { environment } from '../../../environments/environment';
+import { Injectable, inject } from '@angular/core';
 import { API_URL } from '../../tokens';
 import { HttpClient } from '@angular/common/http';
-import { Subscription } from 'rxjs';
-import { AlbumResponse, AlbumSearchResponse } from './model/album';
+import { AlbumSearchResponse } from './model/album';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -15,7 +12,7 @@ export class MusicApiService {
   http = inject(HttpClient);
   auth = inject(AuthService);
 
-  fetchAlbum(query: string) {
+  fetchAlbums(query: string) {
     const token = this.auth.getToken();
 
     // Unicast Observable // 1-1 // Recipe

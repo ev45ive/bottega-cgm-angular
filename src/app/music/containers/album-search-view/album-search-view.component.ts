@@ -20,15 +20,11 @@ export class AlbumSearchViewComponent {
     
     searchAlbums(query: string) {
        this.api
-        .fetchAlbum(query) 
+        .fetchAlbums(query) 
         .subscribe({
-            next: (value) =>  this.results = value.albums.items,
+            next: (response) => this.results = response.albums.items,
             error: (error) => this.message = error.error.error.message,
-            complete: () => console.log('complete'),
+            // complete: () => console.log('complete'),
         })
     }
-    
-    // ngOnInit(): void {
-    //     this.searchAlbums('batman')
-    // }
 }
