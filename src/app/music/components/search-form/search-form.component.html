@@ -5,8 +5,21 @@
 
       <input type="text" matInput formControlName="query" />
 
+      <mat-error>
+        @if (searchForm.get("query"); as field) {
+          @if (field.getError("required")) {
+            Field required
+          }
+          @if (field.getError("minlength"); as error) {
+            Minumum length {{ error.requiredLength }}
+          }
+          @if (field.getError("censor"); as error) {
+            Cannot contain {{ error.badword }}
+          }
+        }
+      </mat-error>
+      
       <mat-hint></mat-hint>
-      <mat-error></mat-error>
     </mat-form-field>
 
     <div class="relative h-0 w-full flex justify-end z-50">
@@ -40,7 +53,9 @@
                 <input type="text" matInput="" formControlName="code" />
               </mat-form-field>
             }
-            <button type="button" mat-button="" (click)="addMarket()">Add market</button>
+            <button type="button" mat-button="" (click)="addMarket()">
+              Add market
+            </button>
           </div>
         </div>
       </div>
