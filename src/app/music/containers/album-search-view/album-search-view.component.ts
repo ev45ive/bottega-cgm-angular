@@ -4,7 +4,7 @@ import { ResultsGridComponent } from '../../components/results-grid/results-grid
 import { MusicApiService } from '../../../core/services/music-api.service';
 import { Album } from '../../../core/services/model/album';
 import { ActivatedRoute, Router } from '@angular/router';
-import { filter, map, switchMap } from 'rxjs';
+import { ReplaySubject, Subject, filter, map, share, shareReplay, switchMap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
@@ -25,6 +25,15 @@ export class AlbumSearchViewComponent {
 
   resultsChanges = this.queryChanges.pipe(
     switchMap((query) => this.api.fetchAlbums(query)),
+
+    // share({
+    // connector: () => new ReplaySubject(3, 10_000),
+    // connector: () => new Subject(),
+    // resetOnRefCountZero: true,
+    // }),
+
+    // share()
+    shareReplay(1, 5000),
   );
 
   constructor(private api: MusicApiService) {}

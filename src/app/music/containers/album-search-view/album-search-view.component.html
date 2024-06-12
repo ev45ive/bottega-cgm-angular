@@ -5,9 +5,9 @@
   (search)="searchAlbums($event)"
 />
 
-<!-- @if(message){
-    <p class="text-red-500 p-5">{{message}}</p>
-} -->
+@if (resultsChanges | async; as results) {
+  Found {{ results.length }} results
+}
 
 @if (resultsChanges | async; as results) {
   <app-results-grid [results]="results" />
