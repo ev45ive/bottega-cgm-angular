@@ -13,10 +13,14 @@ import { CensorDirective } from './directives/censor.directive';
 import { ContenteditableDirective } from './directives/contenteditable.directive';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 export const MaterialImports = [
   CommonModule,
   FormsModule,
+  RouterOutlet,
+  RouterLink,
+  RouterLinkActive,
   MatSelectModule,
   MatButtonModule,
   MatListModule,

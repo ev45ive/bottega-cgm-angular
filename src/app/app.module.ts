@@ -4,7 +4,7 @@ import {
   provideClientHydration,
 } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutes } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { SharedModule } from './shared/shared.module';
@@ -26,11 +26,13 @@ import {
   authInterceptor,
 } from './core/interceptors/auth.interceptor';
 import { MainLayoutComponent } from './core/layouts/main-layout/main-layout.component';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [MainLayoutComponent, BrowserModule, AppRoutingModule, SharedModule],
+  imports: [MainLayoutComponent, BrowserModule, SharedModule],
   providers: [
+    provideRouter(AppRoutes, withComponentInputBinding()),
     provideHttpClient(
       withFetch(),
       withInterceptors([URLInterceptor, authInterceptor, ErrorInterceptor]),

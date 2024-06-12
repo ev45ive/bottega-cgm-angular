@@ -19,8 +19,8 @@ const MusicRoutes: Routes = [
         component: AlbumSearchViewComponent,
       },
       {
-        // path: 'albunms/r43by6ye5yg',
-        path: 'albunms/:albumId',
+        // path: 'albums/r43by6ye5yg',
+        path: 'albums/:albumId',
         component: AlbumDetailsViewComponent,
       },
     ],

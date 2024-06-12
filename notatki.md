@@ -141,3 +141,6 @@ https://rxviz.com/
 
 # Kwestionariusz
 https://forms.gle/Pb4EkZa7hxSsEkGS7 
+
+# Haskell
+https://learnyouahaskell.com/

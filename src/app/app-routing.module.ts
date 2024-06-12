@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [
+export const AppRoutes: Routes = [
   {
     path: '',
     redirectTo: 'music/search',
@@ -20,12 +20,12 @@ const routes: Routes = [
   },
   {
     path: 'music',
-    loadChildren: () => import('./music/music-routing.module')
+    loadChildren: () => import('./music/music-routing.module'),
   },
 ];
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-})
-export class AppRoutingModule {}
+// @NgModule({
+//   imports: [RouterModule.forRoot(AppRoutes)],
+//   exports: [RouterModule],
+// })
+// export class AppRoutingModule {}

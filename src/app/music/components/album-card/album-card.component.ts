@@ -10,6 +10,5 @@ import { Album } from '../../../core/services/model/album';
   styleUrl: './album-card.component.scss'
 })
 export class AlbumCardComponent {
-  @Input({required:true})
-  album!: Album;
+  @Input({required:true}) album!: Album;
 }

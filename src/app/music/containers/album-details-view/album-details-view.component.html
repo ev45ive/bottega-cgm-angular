@@ -1,1 +1,34 @@
-<p>album-details-view works!</p>
+<h1>{{ album()?.name }}</h1>
+
+@if (album(); as album) {
+  <div class="grid grid-cols-2">
+    <div>
+      <app-album-card [album]="album" />
+    </div>
+
+    <div>
+      <div class="grid">
+        <div>Artist Name</div>
+        <div>{{ album.artists[0].name }}</div>
+
+        <div>Tracks</div>
+        <div>{{ album.total_tracks }}</div>
+      </div>
+
+      <audio
+        #audioRef
+        [src]="currentTrack()?.preview_url"
+        class="w-full my-5"
+        controls
+      ></audio>
+
+      <mat-list>
+        @for (item of tracks(); track $index) {
+          <mat-list-item (click)="play(item)">
+            {{ item.name }}
+          </mat-list-item>
+        }
+      </mat-list>
+    </div>
+  </div>
+}
