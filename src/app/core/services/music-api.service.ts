@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { API_URL } from '../../tokens';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { AlbumSearchResponse } from './model/album';
+import { AlbumResponse, AlbumSearchResponse } from './model/album';
 import { AuthService } from './auth.service';
 import { mockAlbums } from '../fixtures/mockAlbums';
 import {
@@ -11,6 +11,7 @@ import {
   from,
   map,
   of,
+  pipe,
   retry,
   throwError,
   timer,
@@ -40,26 +41,27 @@ export class MusicApiService {
       })
       .pipe(
         map((res) => res.albums.items),
-        retry({
-          count: 3,
-          delay(error, retryCount) {
-            if (
-              !(
-                error instanceof HttpErrorResponse ||
-                [500, 0].includes(error.status)
-              )
-            )
-              throw error;
-
-            return timer(retryCount * 500 ** 2); // Exponential backoff
-          },
-        }),
-        catchError((error: unknown) => {
-          if (!(error instanceof HttpErrorResponse))
-            throw new Error('Unexpected error');
-
-          throw new Error(error.error.error.message);
-        }),
+        errorHandling(),
       );
   }
 }
+
+const errorHandling = <T>() => pipe(
+  retry<T>({
+    count: 3,
+    delay(error, retryCount) {
+      if (
+        !(error instanceof HttpErrorResponse || [500, 0].includes(error.status))
+      )
+        throw error;
+
+      return timer(retryCount * 500 ** 2); // Exponential backoff
+    },
+  }),
+  catchError((error: unknown) => {
+    if (!(error instanceof HttpErrorResponse))
+      throw new Error('Unexpected error');
+
+    throw new Error(error.error.error.message);
+  }),
+);
