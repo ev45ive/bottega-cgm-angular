@@ -51,6 +51,30 @@ export class SearchFormComponent {
     }),
   });
 
+
+  ngOnInit(): void {
+    // this.searchForm.value  
+    // this.searchForm.valueChanges
+    
+    // TV - Multicast / VOD - Unicast
+    // Multicasting observable 1-*
+    
+    const field = this.searchForm.get('query')!;
+    
+    const searchChanges = field.valueChanges.pipe(
+      // minimum 3 characters
+
+      // no duplicates
+
+      // wait for 500ms of silence 
+
+    )
+
+    searchChanges.subscribe(console.log)
+
+    
+  }
+
   markets = this.searchForm.get(['advanced', 'markets']) as FormArray<
     FormGroup<{
       code: FormControl<string | null>;
