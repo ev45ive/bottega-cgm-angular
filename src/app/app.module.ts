@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import {
+  BrowserModule,
+  provideClientHydration,
+} from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -7,35 +10,38 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { SharedModule } from './shared/shared.module';
 import { environment } from '../environments/environment';
 import { API_URL } from './tokens';
-import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withFetch, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
-import { provideOAuthClient } from 'angular-oauth2-oidc'
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  provideHttpClient,
+  withFetch,
+  withInterceptors,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
+import { provideOAuthClient } from 'angular-oauth2-oidc';
 import { FormBuilder } from '@angular/forms';
-import { ErrorInterceptor, URLInterceptor, authInterceptor } from './core/interceptors/auth.interceptor';
+import {
+  ErrorInterceptor,
+  URLInterceptor,
+  authInterceptor,
+} from './core/interceptors/auth.interceptor';
+import { MainLayoutComponent } from './core/layouts/main-layout/main-layout.component';
+
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    SharedModule
-  ],
+  declarations: [AppComponent],
+  imports: [MainLayoutComponent, BrowserModule, AppRoutingModule, SharedModule],
   providers: [
     provideHttpClient(
       withFetch(),
-      withInterceptors([
-        URLInterceptor,
-        authInterceptor,
-        ErrorInterceptor
-      ]),
-      withInterceptorsFromDi() // classes!
+      withInterceptors([URLInterceptor, authInterceptor, ErrorInterceptor]),
+      withInterceptorsFromDi(), // classes!
     ),
     provideOAuthClient(),
     provideClientHydration(),
     provideAnimationsAsync(),
     {
-      provide:  API_URL,
-      useValue: environment.api_url
+      provide: API_URL,
+      useValue: environment.api_url,
     },
     // {
     //   provide: HTTP_INTERCEPTORS,
@@ -56,9 +62,9 @@ import { ErrorInterceptor, URLInterceptor, authInterceptor } from './core/interc
     //   useClass: SuperFormBuilder
     // }
   ],
-  bootstrap: [ AppComponent /* HeaderComponent, SidebarComponent */]
+  bootstrap: [AppComponent /* HeaderComponent, SidebarComponent */],
 })
-export class AppModule { }
+export class AppModule {}
 
 // export class AppModule implements DoBootstrap{
 //   ngDoBootstrap(appRef: ApplicationRef): void {

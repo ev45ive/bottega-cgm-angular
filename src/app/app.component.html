@@ -1,11 +1,17 @@
-<div class="container">
-  <div class="flex justify-between">
+<app-main-layout>
+  <ng-container ngProjectAs="sidebar">
+    <mat-nav-list>
+      <a mat-list-item href="/">Link 1</a>
+      <a mat-list-item href="/playlists">Playlists</a>
+      <a mat-list-item href="/music">Search</a>
+    </mat-nav-list>
+  </ng-container>
+  <ng-container ngProjectAs="toolbar">
     <app-clock />
     <button mat-flat-button (click)="login()">Login</button>
+  </ng-container>
+
+  <div class="container">
+    <router-outlet />
   </div>
-
-  <!-- <h1>Welcome in {{ title.toUpperCase() }}!!!</h1> -->
-
-  <!-- PlaylistsComponent -->
-  <router-outlet />
-</div>
+</app-main-layout>

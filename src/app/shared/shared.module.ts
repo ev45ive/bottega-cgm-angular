@@ -11,6 +11,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { CensorDirective } from './directives/censor.directive';
 import { ContenteditableDirective } from './directives/contenteditable.directive';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 export const MaterialImports = [
   CommonModule,
@@ -22,6 +24,12 @@ export const MaterialImports = [
   MatInputModule,
   MatCardModule,
   MatIconModule,
+
+  MatToolbarModule,
+  MatButtonModule,
+  MatSidenavModule,
+  MatIconModule,
+  MatListModule,
 ];
 
 @NgModule({
