@@ -1,20 +1,23 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { MaterialImports, SharedModule } from '../../../shared/shared.module';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-search-form',
   standalone: true,
-  imports: [MaterialImports],
+  imports: [MaterialImports, ReactiveFormsModule],
   templateUrl: './search-form.component.html',
-  styleUrl: './search-form.component.scss'
+  styleUrl: './search-form.component.scss',
 })
 export class SearchFormComponent {
-  
-  query = ''
-
+  query = '';
   @Output() search = new EventEmitter<string>();
 
-  submit(){
-    this.search.emit(this.query)
+  searchForm = new FormGroup({
+    query: new FormControl('batman'),
+  });
+
+  submit() {
+    this.search.emit(this.searchForm.value.query || '');
   }
 }
