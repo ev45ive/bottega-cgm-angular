@@ -53,30 +53,30 @@ export class SearchFormComponent {
     }),
   });
 
-
   ngOnInit(): void {
-    // this.searchForm.value  
+    // this.searchForm.value
     // this.searchForm.valueChanges
-    
+
     // TV - Multicast / VOD - Unicast
     // Multicasting observable 1-*
-    
+
     const field = this.searchForm.get('query')!;
-    
+
     const searchChanges = field.valueChanges.pipe(
-      // wait for 500ms of silence 
+      // wait for 500ms of silence
       debounceTime(500),
 
       // minimum 3 characters
-      filter(q => q?.length >= 3),
+      filter((q) => q?.length >= 3),
 
       // no duplicates,
       distinctUntilChanged(),
-    )
+    );
 
-    searchChanges.subscribe(console.log)
+    // searchChanges.subscribe(console.log)
 
-    
+    // Chaininig multicasts
+    searchChanges.subscribe(this.search);
   }
 
   markets = this.searchForm.get(['advanced', 'markets']) as FormArray<
