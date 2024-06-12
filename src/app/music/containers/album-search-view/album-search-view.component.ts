@@ -26,8 +26,8 @@ export class AlbumSearchViewComponent {
     map((p) => p.get('q') || ''),
     filter(Boolean),
   );
-  sub1?: Subscription;
-  sub2?: Subscription;
+
+  sub = new Subscription();
 
   constructor(private api: MusicApiService) {}
 
@@ -36,15 +36,12 @@ export class AlbumSearchViewComponent {
   );
 
   ngOnInit(): void {
-    this.sub1 = this.queryChanges.subscribe((q) => (this.query = q));
-    this.sub2 = this.resultsChanges.subscribe(
-      (results) => (this.results = results),
-    );
+    this.sub.add(this.queryChanges.subscribe((q) => (this.query = q)));
+    this.sub.add(this.resultsChanges.subscribe((results) => (this.results = results)));
   }
 
   ngOnDestroy(): void {
-    this.sub1?.unsubscribe();
-    this.sub2?.unsubscribe();
+    this.sub.unsubscribe();
   }
 
   searchAlbums(query: string) {
