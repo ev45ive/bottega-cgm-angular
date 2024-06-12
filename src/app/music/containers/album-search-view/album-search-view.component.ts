@@ -5,7 +5,7 @@ import { mockAlbums } from '../../../core/fixtures/mockAlbums';
 import { MusicApiService } from '../../../core/services/music-api.service';
 import { Album } from '../../../core/services/model/album';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription, filter, map, switchMap } from 'rxjs';
+import { Subject, Subscription, filter, map, switchMap, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-album-search-view',
@@ -21,27 +21,28 @@ export class AlbumSearchViewComponent {
 
   router = inject(Router);
   route = inject(ActivatedRoute);
+  onDestroy = new Subject();
 
   queryChanges = this.route.queryParamMap.pipe(
     map((p) => p.get('q') || ''),
     filter(Boolean),
+    takeUntil(this.onDestroy),
   );
-
-  sub = new Subscription();
-
-  constructor(private api: MusicApiService) {}
 
   resultsChanges = this.queryChanges.pipe(
     switchMap((query) => this.api.fetchAlbums(query)), // only newest // debounce
+    takeUntil(this.onDestroy),
   );
 
+  constructor(private api: MusicApiService) {}
+
   ngOnInit(): void {
-    this.sub.add(this.queryChanges.subscribe((q) => (this.query = q)));
-    this.sub.add(this.resultsChanges.subscribe((results) => (this.results = results)));
+    this.queryChanges.subscribe((q) => (this.query = q));
+    this.resultsChanges.subscribe((results) => (this.results = results));
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    this.onDestroy.next(1);
   }
 
   searchAlbums(query: string) {
