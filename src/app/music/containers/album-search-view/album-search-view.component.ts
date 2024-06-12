@@ -31,19 +31,18 @@ export class AlbumSearchViewComponent {
 
   ngOnInit(): void {
     this.queryChanges.subscribe((q) => (this.query = q));
-    this.queryChanges.subscribe((q) => this.searchAlbums(q));
+    this.queryChanges.subscribe((query) => {
+      this.api.fetchAlbums(query).subscribe({
+        next: (albums) => (this.results = albums),
+        error: (error) => (this.message = error.message),
+      });
+    });
   }
 
   searchAlbums(query: string) {
-    // this.router.navigate(['..', 'search'], {
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: { q: query },
-    });
-
-    this.api.fetchAlbums(query).subscribe({
-      next: (albums) => (this.results = albums),
-      error: (error) => (this.message = error.message),
     });
   }
 }
