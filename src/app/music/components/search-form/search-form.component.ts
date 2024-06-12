@@ -13,6 +13,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { Observable } from 'rxjs';
+import {
+  ErrorStateMatcher,
+  ShowOnDirtyErrorStateMatcher,
+} from '@angular/material/core';
 
 const censor =
   (badword: string): ValidatorFn =>
@@ -31,28 +35,34 @@ const AsyncCensor =
     const obs = new Observable<ValidationErrors | null>((subscriber) => {
       console.log('Subscribe');
 
-      setTimeout(() => {
+      const handle = setTimeout(() => {
         subscriber.next(result);
-        // subscriber.error
-        // subscriber.complete
+        console.log('NExt', result);
+
+        subscriber.complete();
       }, 2000);
+
+      return () => {
+        clearTimeout(handle);
+        console.log('Unsubscribe');
+      };
     });
-
-    obs
-      .pipe((previous) => {
-        return new Observable((nextOperator) => {
-          previous.subscribe({
-            next: (value) => nextOperator.next(value),
-          });
-        });
-      })
-      .subscribe({
-        next: (r) => console.log(r),
-        error: (r) => console.log(r),
-        complete: () => console.log('complete'),
-      });
-
     return obs;
+
+    // obs
+    //   .pipe((previous) => {
+    //     return new Observable((nextOperator) => {
+    //       previous.subscribe({
+    //         next: (value) => nextOperator.next(value),
+    //       });
+    //     });
+    //   })
+    //   .subscribe({
+    //     next: (r) => console.log(r),
+    //     error: (r) => console.log(r),
+    //     complete: () => console.log('complete'),
+    //   })
+    //   .unsubscribe()
   };
 
 @Component({
@@ -61,6 +71,9 @@ const AsyncCensor =
   imports: [MaterialImports, ReactiveFormsModule],
   templateUrl: './search-form.component.html',
   styleUrl: './search-form.component.scss',
+  providers: [
+    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
+  ],
 })
 export class SearchFormComponent {
   query = '';
@@ -71,9 +84,9 @@ export class SearchFormComponent {
 
   searchForm = this.bob.group({
     query: [
-      'batman',
-      [Validators.required, Validators.minLength(3), censor('batman')],
-      [],
+      '',
+      [Validators.required, Validators.minLength(3)],
+      [AsyncCensor('batman')],
     ],
     advanced: this.bob.group({
       type: ['album'],

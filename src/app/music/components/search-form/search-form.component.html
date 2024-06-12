@@ -1,12 +1,12 @@
 <form (submit)="submit()" [formGroup]="searchForm">
   <div class="">
-    <mat-form-field class="w-full">
-      <mat-label>Search</mat-label>
+    @if (searchForm.get("query"); as field) {
+      <mat-form-field class="w-full">
+        <mat-label>Search</mat-label>
 
-      <input type="text" matInput formControlName="query" />
+        <input type="text" matInput formControlName="query" />
 
-      <mat-error>
-        @if (searchForm.get("query"); as field) {
+        <mat-error>
           @if (field.getError("required")) {
             Field required
           }
@@ -16,11 +16,13 @@
           @if (field.getError("censor"); as error) {
             Cannot contain {{ error.badword }}
           }
+        </mat-error>
+
+        @if (field.pending) {
+          <mat-hint>Please wait ...</mat-hint>
         }
-      </mat-error>
-      
-      <mat-hint></mat-hint>
-    </mat-form-field>
+      </mat-form-field>
+    }
 
     <div class="relative h-0 w-full flex justify-end z-50">
       <button
