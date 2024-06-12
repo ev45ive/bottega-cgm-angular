@@ -125,3 +125,7 @@ ng g s core/services/music-api
 
 # Testing 
 https://ngneat.github.io/spectator/docs/testing-with-routing
+
+
+# Spotify
+mehenoh713@nimadir.com

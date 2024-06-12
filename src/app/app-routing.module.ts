@@ -7,6 +7,12 @@ const routes: Routes = [
     redirectTo: 'music/search',
     pathMatch: 'full',
   },
+  // Login callback:
+  {
+    path: 'callback',
+    redirectTo: 'music/search',
+    pathMatch: 'full',
+  },
   {
     path: 'playlists',
     loadChildren: () =>

@@ -1,12 +1,11 @@
-
 <div class="container">
+  <div class="flex justify-between">
+    <app-clock />
+    <button mat-flat-button (click)="login()">Login</button>
+  </div>
 
-    
-    <app-clock/>
-    
-    <!-- <h1>Welcome in {{ title.toUpperCase() }}!!!</h1> -->
-    
-    <!-- PlaylistsComponent -->
-    <router-outlet />
-    
+  <!-- <h1>Welcome in {{ title.toUpperCase() }}!!!</h1> -->
+
+  <!-- PlaylistsComponent -->
+  <router-outlet />
 </div>

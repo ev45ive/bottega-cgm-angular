@@ -8,7 +8,7 @@ import { SharedModule } from './shared/shared.module';
 import { environment } from '../environments/environment';
 import { API_URL } from './tokens';
 import { provideHttpClient } from '@angular/common/http';
-
+import { provideOAuthClient } from 'angular-oauth2-oidc'
 @NgModule({
   declarations: [
     AppComponent
@@ -20,6 +20,7 @@ import { provideHttpClient } from '@angular/common/http';
   ],
   providers: [
     provideHttpClient(),
+    provideOAuthClient(),
     provideClientHydration(),
     provideAnimationsAsync(),
     {
