@@ -3,6 +3,8 @@ import { API_URL } from '../../tokens';
 import { HttpClient } from '@angular/common/http';
 import { AlbumSearchResponse } from './model/album';
 import { AuthService } from './auth.service';
+import { mockAlbums } from '../fixtures/mockAlbums';
+import { map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -25,10 +27,10 @@ export class MusicApiService {
         q: query,
       },
     }).pipe(
-      // step 2
-      // step 3
-      // step 4
+      map(res => res.albums.items)
     )
+
+    // return of(mockAlbums)
 
   }
 }

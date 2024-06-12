@@ -22,7 +22,7 @@ export class AlbumSearchViewComponent {
        this.api
         .fetchAlbums(query) 
         .subscribe({
-            next: (response) => this.results = response.albums.items,   // --O--O--O--O--O->
+            next: (albums) => this.results = albums,   // --O--O--O--O--O->
             error: (error) => this.message = error.error.error.message, // --------X>
             // complete: () => console.log('complete'),                 // ----O------O---|>
         })
