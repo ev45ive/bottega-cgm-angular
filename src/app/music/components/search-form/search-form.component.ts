@@ -13,7 +13,14 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { Observable, debounceTime, distinctUntilChanged, filter } from 'rxjs';
+import {
+  Observable,
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  map,
+  withLatestFrom,
+} from 'rxjs';
 import {
   ErrorStateMatcher,
   ShowOnDirtyErrorStateMatcher,
@@ -73,10 +80,22 @@ export class SearchFormComponent {
       distinctUntilChanged(),
     );
 
-    // searchChanges.subscribe(console.log)
+    const statusChanges = field.statusChanges;
+    const valueChanges = field.valueChanges;
+
+    // valueChanges.subscribe(console.log);
+    // statusChanges.subscribe(console.log);
+
+    const validChanges = statusChanges.pipe(
+      withLatestFrom(valueChanges),
+      filter(([status, value]) => status === 'VALID'),
+      map(([status, value]) => value),
+    );
+
+    validChanges.subscribe(console.log);
 
     // Chaininig multicasts
-    searchChanges.subscribe(this.search);
+    // searchChanges.subscribe(this.search);
   }
 
   markets = this.searchForm.get(['advanced', 'markets']) as FormArray<
