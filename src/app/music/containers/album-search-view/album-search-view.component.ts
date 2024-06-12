@@ -5,7 +5,7 @@ import { mockAlbums } from '../../../core/fixtures/mockAlbums';
 import { MusicApiService } from '../../../core/services/music-api.service';
 import { Album } from '../../../core/services/model/album';
 import { ActivatedRoute, Router } from '@angular/router';
-import { filter, map } from 'rxjs';
+import { filter, map, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-album-search-view',
@@ -31,12 +31,21 @@ export class AlbumSearchViewComponent {
 
   ngOnInit(): void {
     this.queryChanges.subscribe((q) => (this.query = q));
-    this.queryChanges.subscribe((query) => {
-      this.api.fetchAlbums(query).subscribe({
-        next: (albums) => (this.results = albums),
-        error: (error) => (this.message = error.message),
-      });
-    });
+
+    const resultsChanges = this.queryChanges.pipe(
+      // map((query) => this.api.fetchAlbums(query)),
+      // mergeMap((query) => this.api.fetchAlbums(query)),  // sub all 
+      // concatMap((query) => this.api.fetchAlbums(query)), // sub in order 
+      // exhaustMap((query) => this.api.fetchAlbums(query)), // one at atime // throttle 
+      switchMap((query) => this.api.fetchAlbums(query)), // only newest // debounce 
+    );
+
+    // this.queryChanges.subscribe((query) => {
+    //   this.api.fetchAlbums(query).subscribe({
+    //     next: (albums) => (this.results = albums),
+    //     error: (error) => (this.message = error.message),
+    //   });
+    // });
   }
 
   searchAlbums(query: string) {
