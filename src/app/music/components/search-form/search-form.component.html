@@ -3,7 +3,7 @@
     <mat-form-field class="w-full">
       <mat-label>Search</mat-label>
 
-      <input type="text" matInput  formControlName="query" />
+      <input type="text" matInput formControlName="query" />
 
       <mat-hint></mat-hint>
       <mat-error></mat-error>
@@ -19,5 +19,32 @@
         <mat-icon>search</mat-icon>
       </button>
     </div>
+  </div>
+  <div>
+    <div class="text-end" (click)="isAdvanced = !isAdvanced">Advanced</div>
+    @if (isAdvanced) {
+      <div class="grid grid-cols-2 gap-5" formGroupName="advanced">
+        <div>
+          <mat-form-field class="w-full">
+            <mat-label>Search</mat-label>
+            <mat-select formControlName="type">
+              <mat-option value="album">Album</mat-option>
+              <mat-option value="artist">Artist</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <div class="grid" formArrayName="markets">
+            @for (item of markets.controls; track $index) {
+              <mat-form-field class="w-full" [formGroup]="item">
+                <input type="text" matInput="" formControlName="code" />
+              </mat-form-field>
+            }
+            <button type="button" mat-button="" (click)="addMarket()">Add market</button>
+          </div>
+        </div>
+      </div>
+      <pre>{{ searchForm.value | json }}</pre>
+    }
   </div>
 </form>

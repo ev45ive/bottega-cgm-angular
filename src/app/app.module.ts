@@ -9,6 +9,7 @@ import { environment } from '../environments/environment';
 import { API_URL } from './tokens';
 import { provideHttpClient } from '@angular/common/http';
 import { provideOAuthClient } from 'angular-oauth2-oidc'
+import { FormBuilder } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent
@@ -32,6 +33,10 @@ import { provideOAuthClient } from 'angular-oauth2-oidc'
     //   provide:  API_URL,
     //   useValue: 'http://localhost/test-api'
     // },
+    // {
+    //   provide: FormBuilder,
+    //   useClass: SuperFormBuilder
+    // }
   ],
   bootstrap: [ AppComponent /* HeaderComponent, SidebarComponent */]
 })
