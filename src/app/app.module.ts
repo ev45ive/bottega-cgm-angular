@@ -7,9 +7,10 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { SharedModule } from './shared/shared.module';
 import { environment } from '../environments/environment';
 import { API_URL } from './tokens';
-import { provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withFetch, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
 import { provideOAuthClient } from 'angular-oauth2-oidc'
 import { FormBuilder } from '@angular/forms';
+import { ErrorInterceptor, URLInterceptor, authInterceptor } from './core/interceptors/auth.interceptor';
 @NgModule({
   declarations: [
     AppComponent
@@ -20,7 +21,15 @@ import { FormBuilder } from '@angular/forms';
     SharedModule
   ],
   providers: [
-    provideHttpClient(),
+    provideHttpClient(
+      withFetch(),
+      withInterceptors([
+        URLInterceptor,
+        authInterceptor,
+        ErrorInterceptor
+      ]),
+      withInterceptorsFromDi() // classes!
+    ),
     provideOAuthClient(),
     provideClientHydration(),
     provideAnimationsAsync(),
@@ -28,6 +37,15 @@ import { FormBuilder } from '@angular/forms';
       provide:  API_URL,
       useValue: environment.api_url
     },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   multi:true,
+    //   useClass: NameInterceptorClass
+    // },
+    // {
+    //   provide: HttpClient,
+    //   useClass: SuperHiperHttpCLient
+    // },
     // Override
     // {
     //   provide:  API_URL,
