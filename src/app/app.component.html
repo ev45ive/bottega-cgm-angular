@@ -1,11 +1,28 @@
 <app-main-layout>
   <ng-container ngProjectAs="sidebar">
     <mat-nav-list>
-      <a mat-list-item href="/">Link 1</a>
-      <a mat-list-item href="/playlists">Playlists</a>
-      <a mat-list-item href="/music">Search</a>
+      <a
+        mat-list-item
+        routerLinkActive="mdc-list-item--activated"
+        routerLink="/"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Home</a
+      >
+      <a
+        mat-list-item
+        routerLinkActive="mdc-list-item--activated"
+        routerLink="/playlists"
+        >Playlists</a
+      >
+      <a
+        mat-list-item
+        routerLinkActive="mdc-list-item--activated"
+        routerLink="/music"
+        >Search</a
+      >
     </mat-nav-list>
   </ng-container>
+
   <ng-container ngProjectAs="toolbar">
     <app-clock />
     <button mat-flat-button (click)="login()">Login</button>
@@ -15,3 +32,5 @@
     <router-outlet />
   </div>
 </app-main-layout>
+
+<ng-template #placki></ng-template>
