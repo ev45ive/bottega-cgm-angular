@@ -60,42 +60,23 @@ export class SearchFormComponent {
     }),
   });
 
+  field = this.searchForm.get('query')!;
+  statusChanges = this.field.statusChanges;
+  valueChanges = this.field.valueChanges;
+
+  validChanges = this.statusChanges.pipe(
+    withLatestFrom(this.valueChanges),
+    filter(([status, value]) => status === 'VALID'),
+    map(([status, value]) => value),
+  );
+
+  searchChanges = this.validChanges.pipe(
+    debounceTime(300),
+    distinctUntilChanged(),
+  );
+  
   ngOnInit(): void {
-    // this.searchForm.value
-    // this.searchForm.valueChanges
-
-    // TV - Multicast / VOD - Unicast
-    // Multicasting observable 1-*
-
-    const field = this.searchForm.get('query')!;
-
-    const searchChanges = field.valueChanges.pipe(
-      // wait for 500ms of silence
-      debounceTime(500),
-
-      // minimum 3 characters
-      filter((q) => q?.length >= 3),
-
-      // no duplicates,
-      distinctUntilChanged(),
-    );
-
-    const statusChanges = field.statusChanges;
-    const valueChanges = field.valueChanges;
-
-    // valueChanges.subscribe(console.log);
-    // statusChanges.subscribe(console.log);
-
-    const validChanges = statusChanges.pipe(
-      withLatestFrom(valueChanges),
-      filter(([status, value]) => status === 'VALID'),
-      map(([status, value]) => value),
-    );
-
-    validChanges.subscribe(console.log);
-
-    // Chaininig multicasts
-    // searchChanges.subscribe(this.search);
+    this.searchChanges.subscribe(this.search);
   }
 
   markets = this.searchForm.get(['advanced', 'markets']) as FormArray<
@@ -155,7 +136,7 @@ const AsyncCensor =
         // console.log('NExt', result);
 
         subscriber.complete();
-      }, 2000);
+      }, 500);
 
       return () => {
         clearTimeout(handle);
