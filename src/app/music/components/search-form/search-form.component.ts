@@ -7,12 +7,13 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
+  NonNullableFormBuilder,
   ReactiveFormsModule,
   ValidationErrors,
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, filter } from 'rxjs';
 import {
   ErrorStateMatcher,
   ShowOnDirtyErrorStateMatcher,
@@ -33,7 +34,8 @@ export class SearchFormComponent {
   @Output() search = new EventEmitter<string>();
 
   isAdvanced = false;
-  bob = inject(FormBuilder);
+  // bob = inject(FormBuilder);
+  bob = inject(NonNullableFormBuilder);
 
   searchForm = this.bob.group({
     query: [
@@ -62,12 +64,14 @@ export class SearchFormComponent {
     const field = this.searchForm.get('query')!;
     
     const searchChanges = field.valueChanges.pipe(
-      // minimum 3 characters
-
-      // no duplicates
-
       // wait for 500ms of silence 
+      debounceTime(500),
 
+      // minimum 3 characters
+      filter(q => q?.length >= 3),
+
+      // no duplicates,
+      distinctUntilChanged(),
     )
 
     searchChanges.subscribe(console.log)
@@ -77,7 +81,7 @@ export class SearchFormComponent {
 
   markets = this.searchForm.get(['advanced', 'markets']) as FormArray<
     FormGroup<{
-      code: FormControl<string | null>;
+      code: FormControl<string>;
     }>
   >;
 
