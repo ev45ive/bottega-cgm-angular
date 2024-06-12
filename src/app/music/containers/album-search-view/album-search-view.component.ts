@@ -1,11 +1,20 @@
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { SearchFormComponent } from '../../components/search-form/search-form.component';
 import { ResultsGridComponent } from '../../components/results-grid/results-grid.component';
-import { mockAlbums } from '../../../core/fixtures/mockAlbums';
 import { MusicApiService } from '../../../core/services/music-api.service';
 import { Album } from '../../../core/services/model/album';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject, Subscription, filter, map, switchMap, takeUntil } from 'rxjs';
+import { filter, map, switchMap } from 'rxjs';
+
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+
+// function takeUntilDestroyed<T>() {
+//   const destroyEmitter = new Subject();
+//   inject(DestroyRef).onDestroy(() => {
+//     destroyEmitter.next(1);
+//   });
+//   return takeUntil<T>(destroyEmitter);
+// }
 
 @Component({
   selector: 'app-album-search-view',
@@ -21,17 +30,16 @@ export class AlbumSearchViewComponent {
 
   router = inject(Router);
   route = inject(ActivatedRoute);
-  onDestroy = new Subject();
 
   queryChanges = this.route.queryParamMap.pipe(
     map((p) => p.get('q') || ''),
     filter(Boolean),
-    takeUntil(this.onDestroy),
+    takeUntilDestroyed(),
   );
 
   resultsChanges = this.queryChanges.pipe(
-    switchMap((query) => this.api.fetchAlbums(query)), // only newest // debounce
-    takeUntil(this.onDestroy),
+    switchMap((query) => this.api.fetchAlbums(query)),
+    takeUntilDestroyed(),
   );
 
   constructor(private api: MusicApiService) {}
@@ -39,10 +47,11 @@ export class AlbumSearchViewComponent {
   ngOnInit(): void {
     this.queryChanges.subscribe((q) => (this.query = q));
     this.resultsChanges.subscribe((results) => (this.results = results));
-  }
 
-  ngOnDestroy(): void {
-    this.onDestroy.next(1);
+    // Error: NG0203: inject() must be called from an injection context such as a constructor, a factory function,
+    // a field initializer, or a function used with `runInInjectionContext`.
+    // Find more at https://angular.dev/errors/NG0203
+    inject(DestroyRef);
   }
 
   searchAlbums(query: string) {
