@@ -5,7 +5,7 @@ import { mockAlbums } from '../../../core/fixtures/mockAlbums';
 import { MusicApiService } from '../../../core/services/music-api.service';
 import { Album } from '../../../core/services/model/album';
 import { ActivatedRoute, Router } from '@angular/router';
-import { filter, map, switchMap } from 'rxjs';
+import { Subscription, filter, map, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-album-search-view',
@@ -26,6 +26,8 @@ export class AlbumSearchViewComponent {
     map((p) => p.get('q') || ''),
     filter(Boolean),
   );
+  sub1?: Subscription;
+  sub2?: Subscription;
 
   constructor(private api: MusicApiService) {}
 
@@ -34,8 +36,15 @@ export class AlbumSearchViewComponent {
   );
 
   ngOnInit(): void {
-    this.queryChanges.subscribe((q) => (this.query = q));
-    this.resultsChanges.subscribe((results) => (this.results = results));
+    this.sub1 = this.queryChanges.subscribe((q) => (this.query = q));
+    this.sub2 = this.resultsChanges.subscribe(
+      (results) => (this.results = results),
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.sub1?.unsubscribe();
+    this.sub2?.unsubscribe();
   }
 
   searchAlbums(query: string) {
