@@ -144,3 +144,6 @@ https://forms.gle/Pb4EkZa7hxSsEkGS7
 
 # Haskell
 https://learnyouahaskell.com/
+
+# Pokemon!
+https://www.linkedin.com/in/mateuszkulesza/
