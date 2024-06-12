@@ -31,7 +31,6 @@ export const URLInterceptor: HttpInterceptorFn = (req, next) => {
 };
 
 export const ErrorInterceptor: HttpInterceptorFn = (req, next) => {
-
   return next(req).pipe(errorHandling());
 };
 
@@ -59,19 +58,20 @@ const errorHandling = <T>() =>
       count: 3,
       delay(error, retryCount) {
         if (
-          !(
-            error instanceof HttpErrorResponse ||
-            [500, 0].includes(error.status)
-          )
+          error instanceof HttpErrorResponse &&
+          [500, 0].includes(error.status)
         )
-          throw error;
+          return timer(500 * retryCount ** 2); // Exponential backoff
 
-        return timer(retryCount * 500 ** 2); // Exponential backoff
+        throw error;
       },
     }),
     catchError((error: unknown) => {
       if (!(error instanceof HttpErrorResponse))
         throw new Error('Unexpected error');
+      
+      if(!error.status)
+        throw new Error('No connection');
 
       throw new Error(error.error.error.message);
     }),
