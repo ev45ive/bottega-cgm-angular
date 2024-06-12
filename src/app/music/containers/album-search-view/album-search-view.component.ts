@@ -29,23 +29,13 @@ export class AlbumSearchViewComponent {
 
   constructor(private api: MusicApiService) {}
 
+  resultsChanges = this.queryChanges.pipe(
+    switchMap((query) => this.api.fetchAlbums(query)), // only newest // debounce
+  );
+
   ngOnInit(): void {
     this.queryChanges.subscribe((q) => (this.query = q));
-
-    const resultsChanges = this.queryChanges.pipe(
-      // map((query) => this.api.fetchAlbums(query)),
-      // mergeMap((query) => this.api.fetchAlbums(query)),  // sub all 
-      // concatMap((query) => this.api.fetchAlbums(query)), // sub in order 
-      // exhaustMap((query) => this.api.fetchAlbums(query)), // one at atime // throttle 
-      switchMap((query) => this.api.fetchAlbums(query)), // only newest // debounce 
-    );
-
-    // this.queryChanges.subscribe((query) => {
-    //   this.api.fetchAlbums(query).subscribe({
-    //     next: (albums) => (this.results = albums),
-    //     error: (error) => (this.message = error.message),
-    //   });
-    // });
+    this.resultsChanges.subscribe((results) => (this.results = results));
   }
 
   searchAlbums(query: string) {
