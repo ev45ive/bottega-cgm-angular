@@ -137,3 +137,7 @@ https://rxjs.dev/guide/operators
 http://rxmarbles.com/
 https://www.learnrxjs.io/
 https://rxviz.com/
+
+
+# Kwestionariusz
+https://forms.gle/Pb4EkZa7hxSsEkGS7 
