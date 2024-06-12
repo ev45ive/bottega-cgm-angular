@@ -16,7 +16,7 @@ export class MusicApiService {
     const token = this.auth.getToken();
 
     // Unicast Observable // 1-1 // Recipe
-    const obs = this.http.get<AlbumSearchResponse>(this.api_url + 'search', {
+    return this.http.get<AlbumSearchResponse>(this.api_url + 'search', {
       headers: {
         Authorization: 'Bearer ' + token,
       },
@@ -24,8 +24,11 @@ export class MusicApiService {
         type: 'album',
         q: query,
       },
-    });
+    }).pipe(
+      // step 2
+      // step 3
+      // step 4
+    )
 
-    return obs;
   }
 }

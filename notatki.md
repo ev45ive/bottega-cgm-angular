@@ -129,3 +129,11 @@ https://ngneat.github.io/spectator/docs/testing-with-routing
 
 # Spotify
 mehenoh713@nimadir.com
+
+# RxJS  "marble diagrams”
+https://gist.github.com/staltz/868e7e9bc2a7b8c1f754
+
+https://rxjs.dev/guide/operators
+http://rxmarbles.com/
+https://www.learnrxjs.io/
+https://rxviz.com/
