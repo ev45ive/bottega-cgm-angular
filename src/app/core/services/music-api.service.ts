@@ -4,7 +4,17 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AlbumSearchResponse } from './model/album';
 import { AuthService } from './auth.service';
 import { mockAlbums } from '../fixtures/mockAlbums';
-import { EMPTY, NEVER, catchError, from, map, of, throwError } from 'rxjs';
+import {
+  EMPTY,
+  NEVER,
+  catchError,
+  from,
+  map,
+  of,
+  retry,
+  throwError,
+  timer,
+} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -30,22 +40,25 @@ export class MusicApiService {
       })
       .pipe(
         map((res) => res.albums.items),
-        catchError((error: unknown, originalObservable) => {
+        retry({
+          count: 3,
+          delay(error, retryCount) {
+            if (
+              !(
+                error instanceof HttpErrorResponse ||
+                [500, 0].includes(error.status)
+              )
+            )
+              throw error;
 
+            return timer(retryCount * 500 ** 2); // Exponential backoff
+          },
+        }),
+        catchError((error: unknown) => {
           if (!(error instanceof HttpErrorResponse))
             throw new Error('Unexpected error');
 
           throw new Error(error.error.error.message);
-
-          // return originalObservable // retry
-          // return this.http.get(inny server).pipe( itd ..)
-          // return throwError(() => new Error(error.error.error.message))
-          // return from([mockAlbums])
-          // return of(mockAlbums)
-          // return [mockAlbums, mockAlbums] // OO|>
-          // return []; // ---|>
-          // return EMPTY // --|>
-          // return NEVER
         }),
       );
   }
